@@ -33,7 +33,7 @@
                            :open-urls ["http://localhost:3449/index.html"]}
 
                 :compiler {:main time-tracker.core
-                           :npm-deps {:localforage "*"}
+                           :npm-deps {:localforage "*" :moment "*"}
                            :install-deps true
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/time_tracker.js"
@@ -49,7 +49,7 @@
                 :source-paths ["src"]
                 :compiler {:output-to "resources/public/js/compiled/time_tracker.js"
                            :main time-tracker.core
-                           :npm-deps {:localforage "*"}
+                           :npm-deps {:localforage "*" :moment "*"}
                            :install-deps true
                            :optimizations :advanced
                            :pretty-print false}}]}

@@ -1,17 +1,21 @@
 (ns time-tracker.core
     (:require [reagent.core :as reagent :refer [atom]]
-               [time_tracker.components.Main :as Main]))
+               [time_tracker.components.Main :as Main]
+               ["localforage" :as localforage]))
 
 (enable-console-print!)
 
-(println "This text is printed from src/time-tracker/core.cljs. Go ahead and edit it and see reloading in action.")
 
-;; define your app data so that it doesn't get over-written on reload
-
-(defonce app-state (atom {:text "Hello world!"}))
-
-(reagent/render-component [Main/render]
-                          (. js/document (getElementById "app")))
+(.then (.getItem localforage "projects") (fn [value] ;Then promise resolution - handle setup after we pull back the projects
+  (js/console.log value)
+  (defonce app-state (atom
+                      {:projects value ;Holds the name of all the projects
+                       :timerActive false ;Bool for timer state
+                       :timerStart false ;Int start time for the currently running timer - false when no timer is running
+                       :timerProject false ;Name of the project currently being tracker - false when no timer is running
+                      }))
+  (reagent/render-component [Main/render app-state]
+                            (. js/document (getElementById "app")))))
 
 (defn on-js-reload []
   ;; optionally touch your app-state to force rerendering depending on

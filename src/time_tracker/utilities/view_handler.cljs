@@ -5,7 +5,8 @@
 (defonce active-view (atom
   {
     :add-new false
-    :tutorial false}))
+    :tutorial false
+    :calendar false}))
 
 ; TODO get rid of that reset - we might not need it depending how we set up the rest of the app
 (defn change-view
@@ -13,5 +14,6 @@
   [view]
   (reset! active-view {
     :add-new false
-    :tutorial false})
+    :tutorial false
+    :calendar false})
   (swap! active-view conj view))

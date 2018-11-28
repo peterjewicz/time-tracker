@@ -11,6 +11,25 @@ html, body {
 .Header {
   display: flex;
   border-bottom: 1px solid black;
+  justify-content: space-between;
+}
+
+/* MAIN BODY AND PROJECT STYLES HERE */
+.Projectitem {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* TIMER STYLES */
+.Timer {
+  max-height: 0px;
+  transition: all .25s;
+  overflow: hidden;
+}
+
+.Timer.active {
+  transition: all .75s;
+  max-height: 200px;
 }
 
 
@@ -35,5 +54,30 @@ html, body {
 }
 
 .New.active {
+  left: 0;
+}
+
+/* CALENDAR STYLES */
+.Calendar {
+  position: absolute;
+  left: 105%;
+  top: 0;
+  transition: all .5s;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.Calendar-header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.Calendar-header div {
+  width: 33%;
+}
+
+.Calendar.active {
   left: 0;
 }
