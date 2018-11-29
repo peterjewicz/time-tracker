@@ -4,14 +4,14 @@
             ["localforage" :as localforage]
             ["moment" :as moment]))
 
-; format: project {:11-28-18 [start end start end]}
+; format: project {:112818 [start end start end]}
+; Date is formatted weird as / throws key error for maps
 (defn end-timer [app-state]
   (let [project (:timerProject @app-state)
         start (:timerStart @app-state)
         end (.getTime (js/Date.))]
         (.then (.getItem localforage project) (fn [value]
           (let [currentStorage (js->clj value :keywordize-keys true)
-                times [start end]
                 currentValue (conj ((keyword (.format (moment) "MMDDYYYY")) currentStorage) start end)]
                 (.setItem localforage project (clj->js
                                               (assoc currentStorage (keyword (.format (moment) "MMDDYYYY")) currentValue))))))
