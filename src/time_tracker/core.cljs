@@ -5,9 +5,8 @@
 
 (enable-console-print!)
 
-
+(.config localforage)
 (.then (.getItem localforage "projects") (fn [value] ;Then promise resolution - handle setup after we pull back the projects
-  (js/console.log value)
   (defonce app-state (atom
                       {:projects value ;Holds the name of all the projects
                        :timerActive false ;Bool for timer state
