@@ -12,6 +12,7 @@
                        :timerActive false ;Bool for timer state
                        :timerStart false ;Int start time for the currently running timer - false when no timer is running
                        :timerProject false ;Name of the project currently being tracker - false when no timer is running
+                       :timerRunning false ;Shows whether timer is active - needed to properly clear interval
                       }))
   (reagent/render-component [Main/render app-state]
                             (. js/document (getElementById "app")))))

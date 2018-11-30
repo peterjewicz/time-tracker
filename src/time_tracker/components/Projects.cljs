@@ -4,8 +4,9 @@
 
 (defn start-timer [app-state project]
   (swap! app-state conj {:timerActive "active"
-                         :timerStart (.getTime (js/Date.))
-                         :timerProject project}))
+                         :timerStart (Math/floor (/ (.getTime (js/Date.)) 1000))
+                         :timerProject project
+                         :timerRunning true}))
 
 (defn render [app-state]
   (fn []
