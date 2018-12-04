@@ -58,6 +58,6 @@
             1000))))
       [:div.Timer {:class (:timerActive @app-state)}
         [:p (:timerProject @app-state)]
-        [:p (str "Started At: " (:timerStart @app-state))]
+        [:p (str "Started At: " (.format(moment (* (:timerStart @app-state) 1000)) "LTS"))]
         [:p (str "Running For: " (format-time @currentTime))]
         [:p {:on-click #(end-timer app-state interval)} "End Timer"]])))
