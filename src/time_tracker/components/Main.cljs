@@ -11,6 +11,6 @@
     [Header/render]
     [Timer/render app-state]
     [New/render]
-    [Calendar/render]
+    [Calendar/render app-state]
     [:div.Project-wrapper
       [Projects/render app-state]]])
