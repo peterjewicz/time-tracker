@@ -3,16 +3,23 @@
             [time_tracker.utilities.view_handler :as view_handler]
             ["moment" :as moment]))
 
-(defn get-visible-dates [dates]
+;TODO make returnDates an atom
+(defn get-visible-dates [projects]
   "creates a list of discrete dates to highlit on the calendar"
-    (for [date dates]
-      (do
-      (print (nth (keys (last (js->clj date))) 1)) ;we can recur with this to generate the key array
-      ; (print (last {(key date) date}))
-      date
-      ))
+      (let [returnDates (atom [])]
+        (doseq [date [projects]]
+          (let [currentKey (first (keys (js->clj date )))
+                mappedValue (into (js->clj date ) {})
+                dates (keys (get mappedValue currentKey))]
+                  (loop [i 0
+                    formattedDates []]
+                      (if (= i (count dates))
+                        formattedDates
+                        (do
+                          (swap! returnDates conj (nth dates i))
+                          (recur (inc i) (conj formattedDates (nth dates i))))))))
+      @returnDates))
 
-  )
 
 (defn get-current-month-days [currentMonth]
   (.daysInMonth (moment currentMonth "MM") "YYYY-MM"))
@@ -75,7 +82,7 @@
 
 (defn render [app-state]
   ; (get-visible-dates (:projectDates @app-state))
-  (js/console.log (doall (get-visible-dates (:projectDates @app-state))))
+  (print (get-visible-dates (:projectDates @app-state)))
   (let [currentMonth (atom (.format (moment) "MM"))
         currentYear (atom (.format (moment) "YYYY"))
         monthDays (atom (get-current-month-days @currentMonth))]
