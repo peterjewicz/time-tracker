@@ -12,7 +12,7 @@
         end (Math/floor (/ (.getTime (js/Date.)) 1000))]
         (.then (.getItem localforage project) (fn [value]
           (let [currentStorage (js->clj value :keywordize-keys true)
-                currentValue (conj ((keyword (.format (moment) "MMDDYYYY")) currentStorage) start end)]
+                currentValue (concat ((keyword (.format (moment) "MMDDYYYY")) currentStorage) [start end])]
                 (.setItem localforage project (clj->js
                                               (assoc currentStorage (keyword (.format (moment) "MMDDYYYY")) currentValue))))))
   (js/clearInterval @interval)

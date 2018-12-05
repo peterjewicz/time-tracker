@@ -9,15 +9,18 @@
   (if (:activeDate @app-state)
     (let [projects (:projectDates @app-state)
           currentDay (clojure.string/replace (:activeDate @app-state) #"/" "")]
-          (println projects)
-          (println currentDay)
-          (let [returnDates (atom [])]
-            (doseq [date [projects]]))
+          (let [returnDates (atom {})
+                listOfProjects (into (js->clj projects) {})] ; set and atom so we can modify in doseq - might be better to use a for?
+            (doseq [[date] listOfProjects] ; itterate through the keys (project names)
+              (let [currentDates (get listOfProjects date)]
+                (if (get currentDates currentDay) ; If that project has a vector key of the selected date
+                  (swap! returnDates conj {(keyword date) (get currentDates currentDay)}))
+              ))@returnDates))))
 
-  )))
 (defn render [app-state]
     (fn []
       (let [currentEnteries (get-current-days-enteries app-state)]
+      (print currentEnteries)
       [:div.Day-view {:class (:day @view_handler/active-view)}
       [:div.Day-view-header
         [:div [:p {:on-click #(view_handler/change-view {:day false})} "Back"]]
