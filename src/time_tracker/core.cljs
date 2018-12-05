@@ -17,9 +17,10 @@
                        :timerStart false ;Int start time for the currently running timer - false when no timer is running
                        :timerProject false ;Name of the project currently being tracker - false when no timer is running
                        :timerRunning false ;Shows whether timer is active - needed to properly clear interval
-                       :projectDates project-dates
+                       :projectDates project-dates ; Holds a mapping of the dates/times for all projects
+                       :activeDay false ; Holds the currently selected day from the calendar - False when no date selected
                       }))
-                      
+
   (reagent/render-component [Main/render app-state]
                             (. js/document (getElementById "app")))))))
 

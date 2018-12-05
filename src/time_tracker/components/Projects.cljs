@@ -3,10 +3,12 @@
             [time_tracker.utilities.view_handler :as view_handler]))
 
 (defn start-timer [app-state project]
-  (swap! app-state conj {:timerActive "active"
-                         :timerStart (Math/floor (/ (.getTime (js/Date.)) 1000))
-                         :timerProject project
-                         :timerRunning true}))
+  (if (:timerActive @app-state)
+    (js/alert "A Timer Is Already Running")
+    (swap! app-state conj {:timerActive "active"
+                           :timerStart (Math/floor (/ (.getTime (js/Date.)) 1000))
+                           :timerProject project
+                           :timerRunning true})))
 
 (defn render [app-state]
   (fn []
