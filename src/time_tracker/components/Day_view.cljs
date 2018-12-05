@@ -6,14 +6,15 @@
 (defn get-current-days-enteries
   [app-state]
   "Grabs the current time eneries for the given day"
-  (let [projects (:projectDates @app-state)
-        currentDay (clojure.string/replace (:activeDate @app-state) #"/" "")]
-        (println projects)
-        (println currentDay)
-        (let [returnDates (atom [])]
-          (doseq [date [projects]]))
+  (if (:activeDate @app-state)
+    (let [projects (:projectDates @app-state)
+          currentDay (clojure.string/replace (:activeDate @app-state) #"/" "")]
+          (println projects)
+          (println currentDay)
+          (let [returnDates (atom [])]
+            (doseq [date [projects]]))
 
-  ))
+  )))
 (defn render [app-state]
     (fn []
       (let [currentEnteries (get-current-days-enteries app-state)]
