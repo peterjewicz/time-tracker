@@ -14,16 +14,36 @@
             (doseq [[date] listOfProjects] ; itterate through the keys (project names)
               (let [currentDates (get listOfProjects date)]
                 (if (get currentDates currentDay) ; If that project has a vector key of the selected date
-                  (swap! returnDates conj {(keyword date) (get currentDates currentDay)}))
-              ))@returnDates))))
+                  (swap! returnDates conj {(keyword date) (get currentDates currentDay)}))))
+                  @returnDates))))
+; Format 25 Minutes and 32 Seconds from 1:10:25 to 1:35:57 
+(defn get-formatted-date-entry
+  [start end]
+  "Handles generating the HTML for a time entry")
 
 (defn render [app-state]
     (fn []
       (let [currentEnteries (get-current-days-enteries app-state)]
-      (print currentEnteries)
+      ; (print currentEnteries)
       [:div.Day-view {:class (:day @view_handler/active-view)}
       [:div.Day-view-header
         [:div [:p {:on-click #(view_handler/change-view {:day false})} "Back"]]
         [:div [:h3 (:activeDate @app-state)]]
         [:div]]
-        [:p (:activeDate @app-state)]])))
+        [:p (:activeDate @app-state)]
+          (doall (for [entry currentEnteries]
+            (for [dates entry]
+              (if (= (type dates) clojure.core/Keyword)
+              (do [:h2 dates])
+              (do
+                (loop [i 0
+                       html [:div]]
+                  (if (= i (count dates))
+                    html
+                    (do
+                      (let [seconds (- (nth dates (inc i)) (nth dates i))]
+                        (recur (+ 2 i) (conj html [:p seconds]))))))
+                ))
+            )
+          ))
+        ])))
