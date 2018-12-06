@@ -30,7 +30,7 @@
     (str "0" time)
     time))
 
-
+; TODO we have similar logic in utilities/date_formatter
 (defn format-time
   "Takes the current time in seconds and formats it better"
   [seconds]

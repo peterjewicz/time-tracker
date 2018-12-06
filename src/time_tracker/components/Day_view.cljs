@@ -1,7 +1,9 @@
 (ns time-tracker.components.Day_view
   (:require [reagent.core :as reagent :refer [atom]]
             [time_tracker.utilities.view_handler :as view_handler]
-            ["localforage" :as localforage]))
+            [time_tracker.utilities.date_formatter :as date_formatter]
+            ["localforage" :as localforage]
+            ["moment" :as moment]))
 
 (defn get-current-days-enteries
   [app-state]
@@ -16,10 +18,16 @@
                 (if (get currentDates currentDay) ; If that project has a vector key of the selected date
                   (swap! returnDates conj {(keyword date) (get currentDates currentDay)}))))
                   @returnDates))))
-; Format 25 Minutes and 32 Seconds from 1:10:25 to 1:35:57 
+
+; Returns Format 25 Minutes and 32 Seconds from 1:10:25 to 1:35:57
 (defn get-formatted-date-entry
   [start end]
-  "Handles generating the HTML for a time entry")
+  "Handles generating the HTML for a time entry"
+  (let [start (* start 1000)
+        end (* end 1000)
+        startText (.format(moment start) "LTS")
+        endText (.format(moment end) "LTS")]
+    (str (date_formatter/format-time-taken start end) " From " startText " to " endText)))
 
 (defn render [app-state]
     (fn []
@@ -42,7 +50,7 @@
                     html
                     (do
                       (let [seconds (- (nth dates (inc i)) (nth dates i))]
-                        (recur (+ 2 i) (conj html [:p seconds]))))))
+                        (recur (+ 2 i) (conj html [:p (get-formatted-date-entry (nth dates i) (nth dates (inc i)))]))))))
                 ))
             )
           ))
