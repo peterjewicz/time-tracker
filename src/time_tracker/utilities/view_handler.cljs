@@ -7,6 +7,7 @@
     :add-new false
     :tutorial false
     :calendar false
+    :reports false
     :day false}))
 
 ; TODO get rid of that reset - we might not need it depending how we set up the rest of the app

@@ -32,13 +32,11 @@
 (defn render [app-state]
     (fn []
       (let [currentEnteries (get-current-days-enteries app-state)]
-      ; (print currentEnteries)
-      [:div.Day-view {:class (:day @view_handler/active-view)}
-      [:div.Day-view-header
-        [:div [:p {:on-click #(view_handler/change-view {:day false})} "Back"]]
-        [:div [:h3 (:activeDate @app-state)]]
-        [:div]]
-        [:p (:activeDate @app-state)]
+        [:div.Day-view {:class (:day @view_handler/active-view)}
+        [:div.Day-view-header
+          [:div [:p {:on-click #(view_handler/change-view {:day false})} "Back"]]
+          [:div [:h3 (:activeDate @app-state)]]
+          [:div]]
           (doall (for [entry currentEnteries]
             (for [dates entry]
               (if (= (type dates) clojure.core/Keyword)
@@ -55,3 +53,4 @@
             )
           ))
         ])))
+; TODO cleanup those parans - left like this for easier debugging for now

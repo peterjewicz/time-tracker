@@ -6,4 +6,4 @@
   [:div.Header
     [:div [:p {:on-click #(view_handler/change-view {:calendar "active"})} "Calendar"]]
     [:div [:p "Time Tracker"]]
-    [:div [:p "Settings"]]])
+    [:div [:p {:on-click #(view_handler/change-view {:reports "active"})} "Reporting"]]])
