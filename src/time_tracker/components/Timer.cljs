@@ -57,7 +57,7 @@
             #(reset! currentTime (- (Math/floor (/ (.getTime (js/Date.)) 1000)) (:timerStart @app-state)))
             1000))))
       [:div.Timer {:class (:timerActive @app-state)}
-        [:p (:timerProject @app-state)]
-        [:p (str "Started At: " (.format(moment (* (:timerStart @app-state) 1000)) "LTS"))]
-        [:p (str "Running For: " (format-time @currentTime))]
-        [:p {:on-click #(end-timer app-state interval)} "End Timer"]])))
+        [:div.Timer-inner
+          [:h4 (str (:timerProject @app-state) " - Started At: " (.format(moment (* (:timerStart @app-state) 1000)) "LTS"))]
+          [:p (str "Running For: " (format-time @currentTime))]
+          [:button {:on-click #(end-timer app-state interval)} "End Timer"]]])))

@@ -15,6 +15,8 @@
     [:div.Projects
       (doall (for [project (:projects @app-state)]
         [:div.Projectitem {:key project}
-          [:p project]
-          [:p {:on-click #(start-timer app-state project)} "Timer"]]))
-      [:p {:on-click #(view_handler/change-view {:add-new "active"})} "New Project   +"]]))
+          [:h3 project]
+          ; [:button "View Enteries"]
+          [:button {:on-click #(start-timer app-state project)} "Start Timer"]]))
+      [:div.newProjectWrapper {:on-click #(view_handler/change-view {:add-new "active"})}
+        [:span "New Project "][:span.newProjectButton " +"]]]))

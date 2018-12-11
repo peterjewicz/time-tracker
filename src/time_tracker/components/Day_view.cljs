@@ -7,7 +7,7 @@
 
 (defn get-current-days-enteries
   [app-state]
-  "Grabs the current time eneries for the given day"
+  "Grabs the current time entries for the given day"
   (if (:activeDate @app-state)
     (let [projects (:projectDates @app-state)
           currentDay (clojure.string/replace (:activeDate @app-state) #"/" "")]
@@ -37,6 +37,7 @@
           [:div [:p {:on-click #(view_handler/change-view {:day false})} "Back"]]
           [:div [:h3 (:activeDate @app-state)]]
           [:div]]
+        [:div.Day-view-body
           (doall (for [entry currentEnteries]
             (for [dates entry]
               (if (= (type dates) clojure.core/Keyword)
@@ -49,8 +50,4 @@
                     (do
                       (let [seconds (- (nth dates (inc i)) (nth dates i))]
                         (recur (+ 2 i) (conj html [:p (get-formatted-date-entry (nth dates i) (nth dates (inc i)))]))))))
-                ))
-            )
-          ))
-        ])))
-; TODO cleanup those parans - left like this for easier debugging for now
+                )))))]])))

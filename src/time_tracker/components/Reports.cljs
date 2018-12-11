@@ -22,7 +22,7 @@
         [:div [:h3 "Reports"]]
         [:div]]
       [:div.Reports-body
-        [:p "Reporting"]
+        [:p "Generate New Report"]
         [pikaday/date-selector {:date-atom start-date}]
         [pikaday/date-selector {:date-atom end-date}]
         [:button {:on-click #(generate-report)} "Generate"]]])))
