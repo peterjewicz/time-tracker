@@ -106,7 +106,7 @@
     (fn []
       [:div.Calendar {:class (:calendar @view_handler/active-view)}
         [:div.Calendar-header
-          [:div [:p {:on-click #(view_handler/change-view {:calendar false})} "Back"]]
+          [:div [:p {:on-click #(view_handler/change-view {:calendar false})} [:i.fas.fa-long-arrow-alt-left]]]
           [:div [:h3 "Calendar"]]
           [:div]]
         [:div.Calendar-body

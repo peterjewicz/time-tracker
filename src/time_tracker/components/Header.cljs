@@ -5,6 +5,6 @@
 
 (defn render []
   [:div.Header
-    [:div [:p {:on-click #(view_handler/change-view {:calendar "active"})} "Calendar"]]
-    [:div [:p (.format (moment) "dddd, MMMM D")]]
-    [:div [:p {:on-click #(view_handler/change-view {:reports "active"})} "Reporting"]]])
+    [:div [:p {:on-click #(view_handler/change-view {:calendar "active"})} [:i.fas.fa-calendar-alt]]]
+    [:div [:p.Header-text (.format (moment) "dddd, MMMM D")]]
+    [:div [:p {:on-click #(view_handler/change-view {:reports "active"})} [:i.fas.fa-chart-bar]]]])

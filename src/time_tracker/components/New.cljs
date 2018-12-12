@@ -19,7 +19,7 @@
   (fn []
     [:div.New {:class (:add-new @view_handler/active-view)}
       [:div.New-header
-        [:div [:p {:on-click #(view_handler/change-view {:add-new false})} "Cancel"]]
+        [:div [:p {:on-click #(view_handler/change-view {:add-new false})} [:i.fas.fa-long-arrow-alt-left]]]
         [:div [:h3 "Add New Project"]]
         [:div]]
       [:div.New-body

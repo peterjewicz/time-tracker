@@ -9,7 +9,7 @@ td {
 }
 
 td.active {
-  background: black;
+  background: #332d59;
   color: white;
   border: 1px solid white;
 }

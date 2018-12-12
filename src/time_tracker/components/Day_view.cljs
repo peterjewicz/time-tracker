@@ -34,7 +34,7 @@
       (let [currentEnteries (get-current-days-enteries app-state)]
         [:div.Day-view {:class (:day @view_handler/active-view)}
         [:div.Day-view-header
-          [:div [:p {:on-click #(view_handler/change-view {:day false})} "Back"]]
+          [:div [:p {:on-click #(view_handler/change-view {:day false})} [:i.fas.fa-long-arrow-alt-left]]]
           [:div [:h3 (:activeDate @app-state)]]
           [:div]]
         [:div.Day-view-body

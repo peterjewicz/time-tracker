@@ -18,11 +18,14 @@
   (fn []
     [:div.Reports {:class (:reports @view_handler/active-view)}
       [:div.Reports-header
-        [:div [:p {:on-click #(view_handler/change-view {:reports false})} "Back"]]
+        [:div [:p {:on-click #(view_handler/change-view {:reports false})} [:i.fas.fa-long-arrow-alt-left]]]
         [:div [:h3 "Reports"]]
         [:div]]
       [:div.Reports-body
         [:p "Generate New Report"]
+        [:label "Start Date"]
         [pikaday/date-selector {:date-atom start-date}]
-        [pikaday/date-selector {:date-atom end-date}]
+        [:br]
+        [:label "End Date"]
+        [pikaday/date-selector. {:date-atom end-date}]
         [:button {:on-click #(generate-report)} "Generate"]]])))
