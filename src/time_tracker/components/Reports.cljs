@@ -2,7 +2,8 @@
   (:require [reagent.core :as reagent :refer [atom]]
             [time_tracker.utilities.view_handler :as view_handler]
             [cljs-pikaday.reagent :as pikaday]
-            ["localforage" :as localforage]))
+            ["localforage" :as localforage]
+            ["moment" :as moment]))
 
 (defonce start-date (reagent/atom (js/Date.)))
 (defonce end-date (reagent/atom (js/Date.)))
@@ -26,24 +27,40 @@
     false))
 
 
+; Go through each date
+; Check and > < start / end dates in atom
+; If so we can create a map :project [dates]
+; we can reduce on the map later in order to get totals per project
 (defn generate-report [projects]
   "Compiles all times between the two dates for all projects"
-  (doseq [date projects]
-    (let [projectName (first (js->clj date))
-          dateValues (second (js->clj date :keywordize-keys true))
-          keys (keys dateValues)]
-          (loop [i 0]
-            (if (= i (count keys))
-              ""
-              (do
-                (print (get dateValues (nth keys i)))
-                (recur (inc i)))))
-    )
-  ))
+  (let [returnHtml (atom {})
+        listOfProjects (into (js->clj projects) {})]
+    (doseq [[date] listOfProjects]
+      (let [currentDates (get listOfProjects date)
+            currentKey (keys currentDates)]
+            (loop [i 0]
+              (if (= i (count currentKey))
+                ""
+                (do
+                  (print (nth currentKey i))
+                  (print (get currentDates (nth currentKey i)))
+                  (recur (inc i)))))
+        ; (print currentKey)
+        ; (print date)
+        ; (js/console.log (+ 10 (.unix (moment "12052018" "MMDDYYYY"))))
+        (if (and
+              (check-time-after (+ 10 (.unix (moment (first currentKey) "MMDDYYYY"))) (.unix (moment @start-date)))
+              (check-time-before (- 10 (.unix (moment (first currentKey) "MMDDYYYY"))) (.unix (moment @end-date))))
+          (do
+            (swap! returnHtml conj {(keyword date) (first currentKey)})))
+        ; (swap! returnDates conj {(keyword date) (get currentDates currentDay)})
+      )
+      )
+  @returnHtml))
 
 (defn render [app-state]
   (let [project-name (atom "")]
-  (generate-report (:projectDates @app-state))
+  (print (generate-report (:projectDates @app-state)))
   (fn []
     [:div.Reports {:class (:reports @view_handler/active-view)}
       [:div.Reports-header
