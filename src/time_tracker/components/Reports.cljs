@@ -12,7 +12,14 @@
   "Generates the PDF Report Of date/times"
   (let [doc (js/jsPDF.)]
     (.text doc "Hello world!", 10, 10)
-    (.save doc  "a4.pdf")))
+    ; (.save doc  "a4.pdf")
+    (js/console.log doc)
+    (js/console.log (.output doc "blob"))
+    ; The following Code utilizies the Cordova Email Composer Plugin and only works on actual devices
+    (.open (.email (.plugins (cordova))) {:to "peterjewicz@totalwebconnections.com" :subject "Your Time Report" :attachments (.output doc "blob")})
+
+
+    ))
 
 (defn check-time-after [time minTime]
   "Checks whether a date/time provided is greater than another"
@@ -74,4 +81,5 @@
         [:br]
         [:label "End Date"]
         [pikaday/date-selector. {:date-atom end-date}]
-        [:button {:on-click #(generate-report (:projectDates @app-state))} "Generate"]]])))
+        [:button {:on-click #(generate-report (:projectDates @app-state))} "Generate"]
+        [:button {:on-click #(download-report)} "Download"]]])))
