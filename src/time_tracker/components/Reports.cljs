@@ -16,7 +16,12 @@
     (js/console.log doc)
     (js/console.log (.output doc "blob"))
     ; The following Code utilizies the Cordova Email Composer Plugin and only works on actual devices
-    (.open (.email (.plugins (cordova))) {:to "peterjewicz@totalwebconnections.com" :subject "Your Time Report" :attachments (.output doc "blob")})
+    (.addEventListener js/document "deviceready" #(js/console.log "test5"))
+    (.addEventListener js/document "deviceready" #(js/console.log js/cordova))
+    (js/console.log js/cordova)
+    (.open (.-email (.-plugins js/cordova)))
+    ;Have to check if the map is correct
+    ; (.open (.email (.plugins (cordova))) {:to "peterjewicz@totalwebconnections.com" :subject "Your Time Report" :attachments (.output doc "blob")})
 
 
     ))
