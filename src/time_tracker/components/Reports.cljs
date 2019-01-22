@@ -14,16 +14,19 @@
     (.text doc "Hello world!", 10, 10)
     ; (.save doc  "a4.pdf")
     (js/console.log doc)
-    (js/console.log (.output doc "blob"))
+    (js/console.log (str "data:application/pdf;base64," (js/btoa (.output doc))))
+    (js/console.log (to-array [(str "data:application/pdf;base64," (js/btoa (.output doc)))]))
     ; The following Code utilizies the Cordova Email Composer Plugin and only works on actual devices
-    (.addEventListener js/document "deviceready" #(js/console.log "test5"))
-    (.addEventListener js/document "deviceready" #(js/console.log js/cordova))
-    (js/console.log js/cordova)
-    (.open (.-email (.-plugins js/cordova)))
+    ; (.addEventListener js/document "deviceready" #(js/console.log "test"))
+    ; (.addEventListener js/document "deviceready" #(js/console.log js/cordova))
+    (js/console.log (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report" :attachments (to-array [(.output doc "datauristring")])}))
+    ; (.open (.-email (.-plugins js/cordova)) {:to "peterjewicz@totalwebconnections.com" :subject "Your Time Report" :attachments (.output doc "blob")})
+    ; (.open (.-email (.-plugins js/cordova)) (.strobj (hash-map "to" "peterjewicz@totalwebconnections.com" "subject" "Your Time Report" )))
     ;Have to check if the map is correct
-    ; (.open (.email (.plugins (cordova))) {:to "peterjewicz@totalwebconnections.com" :subject "Your Time Report" :attachments (.output doc "blob")})
-
-
+    ; (.open (.-email (.-plugins js/cordova)) (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report" :attachments (to-array [(.output doc "datauristring")])}))
+    (.open (.-email (.-plugins js/cordova)) (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report"
+      :attachments (to-array [  (str "data:application/pdf;base64," (js/btoa (.output doc)))  ])}))
+    ; (.strobj (hash-map "to" "peterjewicz@totalwebconnections.com" "subject" "Your Time Report" "attachments" (.output doc "blob")))
     ))
 
 (defn check-time-after [time minTime]
