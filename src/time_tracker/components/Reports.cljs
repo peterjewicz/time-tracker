@@ -13,20 +13,9 @@
   (let [doc (js/jsPDF.)]
     (.text doc "Hello world!", 10, 10)
     ; (.save doc  "a4.pdf")
-    (js/console.log doc)
-    (js/console.log (str "data:application/pdf;base64," (js/btoa (.output doc))))
-    (js/console.log (to-array [(str "data:application/pdf;base64," (js/btoa (.output doc)))]))
-    ; The following Code utilizies the Cordova Email Composer Plugin and only works on actual devices
-    ; (.addEventListener js/document "deviceready" #(js/console.log "test"))
-    ; (.addEventListener js/document "deviceready" #(js/console.log js/cordova))
-    (js/console.log (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report" :attachments (to-array [(.output doc "datauristring")])}))
-    ; (.open (.-email (.-plugins js/cordova)) {:to "peterjewicz@totalwebconnections.com" :subject "Your Time Report" :attachments (.output doc "blob")})
-    ; (.open (.-email (.-plugins js/cordova)) (.strobj (hash-map "to" "peterjewicz@totalwebconnections.com" "subject" "Your Time Report" )))
-    ;Have to check if the map is correct
-    ; (.open (.-email (.-plugins js/cordova)) (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report" :attachments (to-array [(.output doc "datauristring")])}))
+
     (.open (.-email (.-plugins js/cordova)) (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report"
       :attachments (to-array [  (str "data:application/pdf;base64," (js/btoa (.output doc)))  ])}))
-    ; (.strobj (hash-map "to" "peterjewicz@totalwebconnections.com" "subject" "Your Time Report" "attachments" (.output doc "blob")))
     ))
 
 (defn check-time-after [time minTime]
@@ -50,27 +39,41 @@
   "Compiles all times between the two dates for all projects"
   (let [returnHtml (atom {})
         listOfProjects (into (js->clj projects) {})]
+    (print listOfProjects)
     (doseq [[date] listOfProjects]
       (let [currentDates (get listOfProjects date)
             currentKey (keys currentDates)]
             (loop [i 0]
               (if (= i (count currentKey))
                 ""
-                (do
-                  (print (nth currentKey i))
-                  (print (get currentDates (nth currentKey i)))
+                (do ;we use the following two and just add the whole array of times to the returnHTML wrap below if in this
+                  ; (print @returnHtml) ;{}
+                  ; (print date) ; test
+                  ; (print (nth currentKey i)) ;12012018
+                  ; (print (get currentDates (nth currentKey i))) ;[1234,1234]
+                  ; (print (:test @returnHtml))
+                  ;{:test {:12012018 [1234,1234] :12022018 [1234,1234]}}
+
+                  (if (and
+                        (check-time-after (+ 10 (.unix (moment (nth currentKey i) "MMDDYYYY"))) (.unix (moment @start-date)))
+                        (check-time-before (- 10 (.unix (moment (nth currentKey i) "MMDDYYYY"))) (.unix (moment @end-date))))
+                    (do
+
+                      (let [htmlToSet @returnHtml
+                            htmlToMerge {(keyword (nth currentKey i)) (get currentDates (nth currentKey i))}
+                            currentVals ((keyword date) @returnHtml)]
+                            ; (print currentVals)
+                            ; (print htmlToMerge)
+                            ; (print htmlToSet)
+                        (print {(keyword date) (conj currentVals htmlToMerge)})
+                        (swap! returnHtml conj {(keyword date) (conj currentVals htmlToMerge)})
+                        )
+                                ))
                   (recur (inc i)))))
-        ; (print currentKey)
-        ; (print date)
-        ; (js/console.log (+ 10 (.unix (moment "12052018" "MMDDYYYY"))))
-        (if (and
-              (check-time-after (+ 10 (.unix (moment (first currentKey) "MMDDYYYY"))) (.unix (moment @start-date)))
-              (check-time-before (- 10 (.unix (moment (first currentKey) "MMDDYYYY"))) (.unix (moment @end-date))))
-          (do
-            (swap! returnHtml conj {(keyword date) (first currentKey)})))
-        ; (swap! returnDates conj {(keyword date) (get currentDates currentDay)})
+
       )
       )
+  (print @returnHtml)
   @returnHtml))
 
 (defn render [app-state]
