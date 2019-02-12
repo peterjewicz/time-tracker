@@ -1,12 +1,14 @@
 (ns time-tracker.components.Reports
   (:require [reagent.core :as reagent :refer [atom]]
             [time_tracker.utilities.view_handler :as view_handler]
+            [time_tracker.utilities.date_formatter :as date_formatter]
             [cljs-pikaday.reagent :as pikaday]
             ["localforage" :as localforage]
             ["moment" :as moment]))
 
 (defonce start-date (reagent/atom (js/Date.)))
 (defonce end-date (reagent/atom (js/Date.)))
+(defonce current-report (reagent/atom {}))
 
 (defn download-report []
   "Generates the PDF Report Of date/times"
@@ -65,7 +67,7 @@
                             ; (print currentVals)
                             ; (print htmlToMerge)
                             ; (print htmlToSet)
-                        (print {(keyword date) (conj currentVals htmlToMerge)})
+                        ; (print {(keyword date) (conj currentVals htmlToMerge)})
                         (swap! returnHtml conj {(keyword date) (conj currentVals htmlToMerge)})
                         )
                                 ))
@@ -74,11 +76,12 @@
       )
       )
   (print @returnHtml)
+  (reset! current-report @returnHtml)
   @returnHtml))
 
 (defn render [app-state]
   (let [project-name (atom "")]
-  (print (generate-report (:projectDates @app-state)))
+  ; (print (generate-report (:projectDates @app-state)))
   (fn []
     [:div.Reports {:class (:reports @view_handler/active-view)}
       [:div.Reports-header
@@ -93,4 +96,24 @@
         [:label "End Date"]
         [pikaday/date-selector. {:date-atom end-date}]
         [:button {:on-click #(generate-report (:projectDates @app-state))} "Generate"]
-        [:button {:on-click #(download-report)} "Download"]]])))
+        [:button {:on-click #(download-report)} "Download"]
+        [:div.Reports-list
+          (doall (for [project @current-report]
+            (for [date (second project)]
+              (do
+                [:div
+                [:h3 (first project)]
+                (let [dateKey (first (first date))
+                      dateItems (second (first date))]
+                  [:div
+                    [:p (.format (moment (name dateKey) "MMDDYYYY") "LL")]
+
+                    ; we need to itterate through all entries of the day here and add, this only gives us the first two
+                    (print (date_formatter/get-total-seconds dateItems))
+                    [:p (date_formatter/format-time-taken 0 (* 1000 date_formatter/get-total-seconds dateItems))]
+                    [:p (date_formatter/format-time-taken (* 1000 (first dateItems)) (* 1000 (second dateItems)))]]
+                  ; (print (first (first date)))
+                  )
+                ])
+              )
+            ))]]])))
