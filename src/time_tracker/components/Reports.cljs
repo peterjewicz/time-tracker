@@ -41,7 +41,7 @@
   "Compiles all times between the two dates for all projects"
   (let [returnHtml (atom {})
         listOfProjects (into (js->clj projects) {})]
-    (print listOfProjects)
+    ; (print listOfProjects)
     (doseq [[date] listOfProjects]
       (let [currentDates (get listOfProjects date)
             currentKey (keys currentDates)]
@@ -75,7 +75,7 @@
 
       )
       )
-  (print @returnHtml)
+  ; (print @returnHtml)
   (reset! current-report @returnHtml)
   @returnHtml))
 
@@ -99,21 +99,17 @@
         [:button {:on-click #(download-report)} "Download"]
         [:div.Reports-list
           (doall (for [project @current-report]
-            (for [date (second project)]
-              (do
-                [:div
+            (do
+              [:div
                 [:h3 (first project)]
-                (let [dateKey (first (first date))
-                      dateItems (second (first date))]
-                  [:div
-                    [:p (.format (moment (name dateKey) "MMDDYYYY") "LL")]
-
-                    ; we need to itterate through all entries of the day here and add, this only gives us the first two
-                    (print (date_formatter/get-total-seconds dateItems))
-                    [:p (date_formatter/format-time-taken 0 (* 1000 date_formatter/get-total-seconds dateItems))]
-                    [:p (date_formatter/format-time-taken (* 1000 (first dateItems)) (* 1000 (second dateItems)))]]
-                  ; (print (first (first date)))
+              (for [date (second project)]
+                (do
+                  (let [dateKey (first (first date))
+                        dateItems (second (first date))]
+                    [:div.Reports-dayValue
+                      [:p (str (.format (moment (name dateKey) "MMDDYYYY") "LL") " : ")]
+                      [:p (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems)))]]
+                    )
                   )
-                ])
-              )
-            ))]]])))
+                )
+            ])))]]])))

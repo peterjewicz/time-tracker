@@ -288,3 +288,11 @@ button {
 .Reports-body button {
   margin-top: 8px;
 }
+
+.Reports-dayValue {
+  display: flex;
+}
+
+.Reports-dayValue p {
+  padding: 0 8px;
+}

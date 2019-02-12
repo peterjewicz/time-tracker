@@ -9,14 +9,12 @@
     (str time string)))
 
 (defn get-total-seconds [timeArr]
-  "Takes a vector of times [start end] and returns the total summed time of the vector"
+  "Takes a vector of times '[start end start end]' and returns the total summed time of the vector"
   (loop [i 0
          total 0]
     (if (>= i (- (count timeArr) 1))
       total
-      (do ; TODO remove
-        (print i) ; TODO remove
-        (recur (+ 2 i) (+ (- (nth timeArr (+ 1 i)) (nth timeArr i)) total))))))
+        (recur (+ 2 i) (+ (- (nth timeArr (+ 1 i)) (nth timeArr i)) total)))))
 
 (defn format-time-taken [start end]
   "Returns a date in the following format `25 Minutes and 32 Seconds`"
