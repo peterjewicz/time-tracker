@@ -9,16 +9,7 @@
 (defonce start-date (reagent/atom (js/Date.)))
 (defonce end-date (reagent/atom (js/Date.)))
 (defonce current-report (reagent/atom {}))
-
-(defn download-report []
-  "Generates the PDF Report Of date/times"
-  (let [doc (js/jsPDF.)]
-    (.text doc "Hello world!", 10, 10)
-    ; (.save doc  "a4.pdf")
-
-    (.open (.-email (.-plugins js/cordova)) (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report"
-      :attachments (to-array [  (str "data:application/pdf;base64," (js/btoa (.output doc)))  ])}))
-    ))
+(defonce current-pdf-offset (reagent/atom 1))
 
 (defn check-time-after [time minTime]
   "Checks whether a date/time provided is greater than another"
@@ -48,14 +39,7 @@
             (loop [i 0]
               (if (= i (count currentKey))
                 ""
-                (do ;we use the following two and just add the whole array of times to the returnHTML wrap below if in this
-                  ; (print @returnHtml) ;{}
-                  ; (print date) ; test
-                  ; (print (nth currentKey i)) ;12012018
-                  ; (print (get currentDates (nth currentKey i))) ;[1234,1234]
-                  ; (print (:test @returnHtml))
-                  ;{:test {:12012018 [1234,1234] :12022018 [1234,1234]}}
-
+                (do
                   (if (and
                         (check-time-after (+ 10 (.unix (moment (nth currentKey i) "MMDDYYYY"))) (.unix (moment @start-date)))
                         (check-time-before (- 10 (.unix (moment (nth currentKey i) "MMDDYYYY"))) (.unix (moment @end-date))))
@@ -64,10 +48,6 @@
                       (let [htmlToSet @returnHtml
                             htmlToMerge {(keyword (nth currentKey i)) (get currentDates (nth currentKey i))}
                             currentVals ((keyword date) @returnHtml)]
-                            ; (print currentVals)
-                            ; (print htmlToMerge)
-                            ; (print htmlToSet)
-                        ; (print {(keyword date) (conj currentVals htmlToMerge)})
                         (swap! returnHtml conj {(keyword date) (conj currentVals htmlToMerge)})
                         )
                                 ))
@@ -75,9 +55,38 @@
 
       )
       )
-  ; (print @returnHtml)
   (reset! current-report @returnHtml)
   @returnHtml))
+
+
+(defn download-report [projects]
+  "Generates the PDF Report Of date/times"
+  (print @current-pdf-offset)
+  (swap! current-pdf-offset inc)
+  (let [doc (js/jsPDF.)
+        docContent (generate-report projects)]
+    ; (.text doc "Hello world!", 10, 10)
+    (doall (for [project docContent]
+      (do
+        (.text doc (str (first project)), 10, (* 25 @current-pdf-offset))
+        (doall (for [date (second project)]
+          (do
+            (let [dateKey (first (first date))
+                  dateItems (second (first date))]
+                (.text doc (str (.format (moment (name dateKey) "MMDDYYYY") "LL") " : "), 10, (+ 25 (* 25 @current-pdf-offset)))
+                (.text doc (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems))), 50, (+ 25 (* 25 @current-pdf-offset)))
+                (swap! current-pdf-offset inc)
+              )
+            )
+          )
+
+          )
+      )))
+    (.save doc  "a4.pdf")
+
+    ; (.open (.-email (.-plugins js/cordova)) (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report"
+    ;   :attachments (to-array [  (str "data:application/pdf;base64," (js/btoa (.output doc)))  ])}))
+  ))
 
 (defn render [app-state]
   (let [project-name (atom "")]
@@ -96,7 +105,7 @@
         [:label "End Date"]
         [pikaday/date-selector. {:date-atom end-date}]
         [:button {:on-click #(generate-report (:projectDates @app-state))} "Generate"]
-        [:button {:on-click #(download-report)} "Download"]
+        [:button {:on-click #(download-report (:projectDates @app-state))} "Download"]
         [:div.Reports-list
           (doall (for [project @current-report]
             (do
