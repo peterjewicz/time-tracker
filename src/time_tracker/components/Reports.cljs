@@ -61,21 +61,26 @@
 
 (defn download-report [projects]
   "Generates the PDF Report Of date/times"
-  (print @current-pdf-offset)
-  (swap! current-pdf-offset inc)
   (let [doc (js/jsPDF.)
         docContent (generate-report projects)]
     ; (.text doc "Hello world!", 10, 10)
     (doall (for [project docContent]
       (do
-        (.text doc (str (first project)), 10, (* 25 @current-pdf-offset))
+        (.setFontSize doc 24) ; header font size quickly swap out here then go back to the regular body text
+        (.text doc (str (name (first project))), 10, (* 15 @current-pdf-offset))
+        (.setFontSize doc 12) ; body text font size
+        (swap! current-pdf-offset inc)
         (doall (for [date (second project)]
           (do
             (let [dateKey (first (first date))
                   dateItems (second (first date))]
-                (.text doc (str (.format (moment (name dateKey) "MMDDYYYY") "LL") " : "), 10, (+ 25 (* 25 @current-pdf-offset)))
-                (.text doc (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems))), 50, (+ 25 (* 25 @current-pdf-offset)))
-                (swap! current-pdf-offset inc)
+                (.text doc (str (.format (moment (name dateKey) "MMDDYYYY") "LL") " : "), 10,  (* 15 @current-pdf-offset))
+                (.text doc (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems))), 75, (* 15 @current-pdf-offset))
+                (if (> @current-pdf-offset 8)
+                  (do
+                    (.addPage doc )
+                    (reset! current-pdf-offset 1))
+                  (swap! current-pdf-offset inc))
               )
             )
           )
