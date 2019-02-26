@@ -14,9 +14,4 @@
 (defn change-view
   "Changes the by merging in the passed view i.e {add-new 'True'}"
   [view]
-  ; (reset! active-view {
-  ;   :add-new false
-  ;   :tutorial false
-  ;   :calendar false}
-  ;   :day false)
   (swap! active-view conj view))

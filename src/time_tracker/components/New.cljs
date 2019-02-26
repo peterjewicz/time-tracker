@@ -9,7 +9,7 @@
       (if-not (some #{@name} currentStorage) ; Don't let an item that is already set through
         (do
           (.setItem localforage "projects" (clj->js (conj currentStorage @name)))
-          (js/alert "Project Added!")
+          (js/alert "Project Added!") ; TODO we need to create a better looking alert notifiction here
           (reset! name "")
           (view_handler/change-view {:add-new false}))
         (js/alert "Project Already Exists"))))))

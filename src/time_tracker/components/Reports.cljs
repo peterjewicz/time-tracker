@@ -6,7 +6,7 @@
             ["localforage" :as localforage]
             ["moment" :as moment]))
 
-(defonce start-date (reagent/atom (js/Date.)))
+(defonce start-date (reagent/atom (js/Date. (.setHours (js/Date.) 0 0 0 0))))
 (defonce end-date (reagent/atom (js/Date.)))
 (defonce current-report (reagent/atom {}))
 (defonce current-pdf-offset (reagent/atom 1))
@@ -32,7 +32,6 @@
   "Compiles all times between the two dates for all projects"
   (let [returnHtml (atom {})
         listOfProjects (into (js->clj projects) {})]
-    ; (print listOfProjects)
     (doseq [[date] listOfProjects]
       (let [currentDates (get listOfProjects date)
             currentKey (keys currentDates)]
@@ -62,8 +61,8 @@
 (defn download-report [projects]
   "Generates the PDF Report Of date/times"
   (let [doc (js/jsPDF.)
-        docContent (generate-report projects)]
-    ; (.text doc "Hello world!", 10, 10)
+        docContent (generate-report projects)
+        maxAmountOfItems (atom 16)] ; think 16 is pretty good
     (doall (for [project docContent]
       (do
         (.setFontSize doc 24) ; header font size quickly swap out here then go back to the regular body text
@@ -76,7 +75,7 @@
                   dateItems (second (first date))]
                 (.text doc (str (.format (moment (name dateKey) "MMDDYYYY") "LL") " : "), 10,  (* 15 @current-pdf-offset))
                 (.text doc (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems))), 75, (* 15 @current-pdf-offset))
-                (if (> @current-pdf-offset 8)
+                (if (> @current-pdf-offset @maxAmountOfItems)
                   (do
                     (.addPage doc )
                     (reset! current-pdf-offset 1))
@@ -87,7 +86,7 @@
 
           )
       )))
-    (.save doc  "a4.pdf")
+    (.save doc  "Your_Time_Report.pdf")
 
     ; (.open (.-email (.-plugins js/cordova)) (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report"
     ;   :attachments (to-array [  (str "data:application/pdf;base64," (js/btoa (.output doc)))  ])}))
@@ -122,8 +121,4 @@
                         dateItems (second (first date))]
                     [:div.Reports-dayValue
                       [:p (str (.format (moment (name dateKey) "MMDDYYYY") "LL") " : ")]
-                      [:p (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems)))]]
-                    )
-                  )
-                )
-            ])))]]])))
+                      [:p (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems)))]])))])))]]])))

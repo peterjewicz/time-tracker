@@ -52,15 +52,15 @@
         (if (= x 8)
           row
           (do
-              (if (< (- (+ i x) offsetAmount) 10)
-                (do ; if < 10 we add the 0 or it will fails - TODO might want to reorganize this lots of repeat
-                  (if ( some #{(str currentMonth "/0" (- (+ i x) offsetAmount) "/" currentYear)} date-values)
-                    (recur (inc x) (conj row [:td.active {:on-click #(open-day-view (str currentMonth "/0" (- (+ i x) offsetAmount) "/" currentYear) app-state)} (get-day-display offsetAmount numberOfDays (+ i x))]))
-                    (recur (inc x) (conj row [:td (get-day-display offsetAmount numberOfDays (+ i x))]))))
-                (do
-                  (if ( some #{(str currentMonth "/" (- (+ i x) offsetAmount) "/" currentYear)} date-values)
-                    (recur (inc x) (conj row [:td.active {:on-click #(open-day-view (str currentMonth "/" (- (+ i x) offsetAmount) "/" currentYear) app-state)} (get-day-display offsetAmount numberOfDays (+ i x))]))
-                    (recur (inc x) (conj row [:td (get-day-display offsetAmount numberOfDays (+ i x))])))))))))
+            (if (< (- (+ i x) offsetAmount) 10)
+              (do ; if < 10 we add the 0 or it will fails - TODO might want to reorganize this lots of repeat
+                (if ( some #{(str currentMonth "/0" (- (+ i x) offsetAmount) "/" currentYear)} date-values)
+                  (recur (inc x) (conj row [:td.active {:on-click #(open-day-view (str currentMonth "/0" (- (+ i x) offsetAmount) "/" currentYear) app-state)} (get-day-display offsetAmount numberOfDays (+ i x))]))
+                  (recur (inc x) (conj row [:td (get-day-display offsetAmount numberOfDays (+ i x))]))))
+              (do
+                (if ( some #{(str currentMonth "/" (- (+ i x) offsetAmount) "/" currentYear)} date-values)
+                  (recur (inc x) (conj row [:td.active {:on-click #(open-day-view (str currentMonth "/" (- (+ i x) offsetAmount) "/" currentYear) app-state)} (get-day-display offsetAmount numberOfDays (+ i x))]))
+                  (recur (inc x) (conj row [:td (get-day-display offsetAmount numberOfDays (+ i x))])))))))))
 
 (defn generate-table-html [numberOfDays currentMonth currentYear date-values app-state]
   (let [offsetAmount (.day (.startOf (moment (str currentMonth "/" currentYear) "MM/YYYY") "month"))
