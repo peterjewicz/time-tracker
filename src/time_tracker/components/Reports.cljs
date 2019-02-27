@@ -66,8 +66,13 @@
     (doall (for [project docContent]
       (do
         (.setFontSize doc 24) ; header font size quickly swap out here then go back to the regular body text
+        (.setTextColor doc "#fff") ; font color for header
+        (.setFillColor doc "#633892")
+        (.rect doc 0, (- (* 15 @current-pdf-offset) 9 ), 250, 12, "FD")
+        ; rect(x, y, w, h, style)
         (.text doc (str (name (first project))), 10, (* 15 @current-pdf-offset))
         (.setFontSize doc 12) ; body text font size
+        (.setTextColor doc "#000") ; font color for body text
         (swap! current-pdf-offset inc)
         (doall (for [date (second project)]
           (do
@@ -87,6 +92,7 @@
           )
       )))
     (.save doc  "Your_Time_Report.pdf")
+    (reset! current-pdf-offset 1)
 
     ; (.open (.-email (.-plugins js/cordova)) (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report"
     ;   :attachments (to-array [  (str "data:application/pdf;base64," (js/btoa (.output doc)))  ])}))
