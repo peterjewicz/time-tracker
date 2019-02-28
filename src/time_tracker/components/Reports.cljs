@@ -91,7 +91,8 @@
 
           )
       )))
-    (.save doc  "Your_Time_Report.pdf")
+    (.save doc "Your_Time_Report.pdf") ;This works but we want to test on actual device
+    ; (.save (.output doc "blob") "Your_Time_Report.pdf")
     (reset! current-pdf-offset 1)
 
     ; (.open (.-email (.-plugins js/cordova)) (clj->js {:from "Test@test.com" :body "test tst" :to (to-array ["peterjewicz@totalwebconnections.com"]) :subject "Your Time Report"

@@ -5,6 +5,8 @@
 
 (enable-console-print!)
 
+
+; TODO we should move these over to the state utility we set up and handle everything there
 (defn get-project-dates [project-map]
   (.then (js/Promise.all (map #(.then (.getItem localforage %) (fn [v] [% v])) project-map)) (partial into {})))
 

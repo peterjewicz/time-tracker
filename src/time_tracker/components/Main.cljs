@@ -14,7 +14,7 @@
     [Reports/render app-state]
     [Timer/render app-state]
     [Day_view/render app-state]
-    [New/render]
+    [New/render app-state]
     [Calendar/render app-state]
     [:div.Project-wrapper
       [Projects/render app-state]]])
