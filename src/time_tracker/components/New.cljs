@@ -7,13 +7,15 @@
 (defn add-project [name app-state]
   (.then (.getItem localforage "projects") (fn [value]  ; then for getItem promise here
     (let [currentStorage (js->clj value)]
-      (if-not (some #{@name} currentStorage) ; Don't let an item that is already set through
-        (do
-          (.then (.setItem localforage "projects" (clj->js (conj currentStorage @name)))(fn [value]
-            (update-project-state app-state)))
-          (js/alert "Project Added!") ; TODO we need to create a better looking alert notifiction here
-          (reset! name "")
-          (view_handler/change-view {:add-new false}))
+      (if-not (some #{(.trim @name)} currentStorage) ; Don't let an item that is already set through
+        (if  (> (.-length (.trim @name)) 0)
+          (do
+            (.then (.setItem localforage "projects" (clj->js (conj currentStorage (.trim @name))))(fn [value]
+              (update-project-state app-state)))
+            (js/alert "Project Added!") ; TODO we need to create a better looking alert notifiction here
+            (reset! name "")
+            (view_handler/change-view {:add-new false}))
+          (js/alert "Project Name Cannot Be Empty"))
         (js/alert "Project Already Exists"))))))
 
 (defn render [app-state]

@@ -12,7 +12,7 @@
   "creates a list of discrete dates to highlit on the calendar"
       (let [returnDates (atom [])]
         (doseq [date [projects]]
-          (let [currentKey (first (keys (js->clj date )))
+          (let [currentKey  (first (keys (js->clj date )))
                 mappedValue (into (js->clj date ) {})
                 dates (keys (get mappedValue currentKey))]
                   (loop [i 0
@@ -52,6 +52,7 @@
         (if (= x 8)
           row
           (do
+            ; (print date-values)
             (if (< (- (+ i x) offsetAmount) 10)
               (do ; if < 10 we add the 0 or it will fails - TODO might want to reorganize this lots of repeat
                 (if ( some #{(str currentMonth "/0" (- (+ i x) offsetAmount) "/" currentYear)} date-values)
