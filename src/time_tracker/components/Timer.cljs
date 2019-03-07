@@ -1,6 +1,7 @@
 (ns time-tracker.components.Timer
   (:require [reagent.core :as reagent :refer [atom]]
             [time_tracker.utilities.view_handler :as view_handler]
+            [time_tracker.utilities.state :refer [update-project-dates]]
             ["localforage" :as localforage]
             ["moment" :as moment]))
 
@@ -13,8 +14,9 @@
         (.then (.getItem localforage project) (fn [value]
           (let [currentStorage (js->clj value :keywordize-keys true)
                 currentValue (concat ((keyword (.format (moment) "MMDDYYYY")) currentStorage) [start end])] ; Concat here to prevent issues with out of order on first insertion
-                (.setItem localforage project (clj->js
-                                              (assoc currentStorage (keyword (.format (moment) "MMDDYYYY")) currentValue))))))
+                (.then (.setItem localforage project (clj->js
+                       (assoc currentStorage (keyword (.format (moment) "MMDDYYYY")) currentValue)))
+                        (fn [value] (update-project-dates app-state))))))
   (js/clearInterval @interval)
   (reset! interval nil)
   (swap! app-state conj {:timerActive false

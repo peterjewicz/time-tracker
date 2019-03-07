@@ -4,10 +4,16 @@
             [time_tracker.utilities.state :refer [update-project-state]]
             ["localforage" :as localforage]))
 
+(defn project-exists? [project currentStorage]
+  "returns bool whether project exists"
+  (if (some #{(.trim project)} currentStorage)
+    true
+    false))
+
 (defn add-project [name app-state]
   (.then (.getItem localforage "projects") (fn [value]  ; then for getItem promise here
     (let [currentStorage (js->clj value)]
-      (if-not (some #{(.trim @name)} currentStorage) ; Don't let an item that is already set through
+      (if-not (project-exists? @name currentStorage) ; Don't let an item that is already set through
         (if  (> (.-length (.trim @name)) 0)
           (do
             (.then (.setItem localforage "projects" (clj->js (conj currentStorage (.trim @name))))(fn [value]

@@ -101,7 +101,6 @@
 
 (defn render [app-state]
   (let [project-name (atom "")]
-  ; (print (generate-report (:projectDates @app-state)))
   (fn []
     [:div.Reports {:class (:reports @view_handler/active-view)}
       [:div.Reports-header
@@ -120,12 +119,13 @@
         [:div.Reports-list
           (doall (for [project @current-report]
             (do
-              [:div
-                [:h3 (first project)]
+              [:div {:key (str (first project) "-title")}
+                [:h3 {:key (first project)} (first project)]
               (for [date (second project)]
                 (do
                   (let [dateKey (first (first date))
                         dateItems (second (first date))]
-                    [:div.Reports-dayValue
-                      [:p (str (.format (moment (name dateKey) "MMDDYYYY") "LL") " : ")]
-                      [:p (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems)))]])))])))]]])))
+                    (doall
+                      [:div.Reports-dayValue {:key (str (first project) "-values")}
+                        [:p (str (.format (moment (name dateKey) "MMDDYYYY") "LL") " : ")]
+                        [:p (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems)))]]))))])))]]])))

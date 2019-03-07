@@ -117,12 +117,13 @@
               [:p.Calendar-Title (str (.format (moment @currentMonth "MM") "MMMM") " " @currentYear)]
               [:p.Calendar-arrow {:on-click #(swap! currentMonth (fn [current currentYear] (increment-month current currentYear monthDays)) currentYear monthDays)} "->"]]
             [:table.Calendar-wrapper
-              [:tr
-                [:th "Sun"]
-                [:th "Mon"]
-                [:th "Tue"]
-                [:th "Wed"]
-                [:th "Thur"]
-                [:th "Fri"]
-                [:th "Sat"]]
+              [:thead
+                [:tr
+                  [:th "Sun"]
+                  [:th "Mon"]
+                  [:th "Tue"]
+                  [:th "Wed"]
+                  [:th "Thur"]
+                  [:th "Fri"]
+                  [:th "Sat"]]]
                 (generate-table-html @monthDays @currentMonth @currentYear visibleDates app-state)]]]])))
