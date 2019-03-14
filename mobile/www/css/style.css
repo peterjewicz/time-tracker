@@ -1,0 +1,299 @@
+/* some style */
+html, body {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  height: 100%;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#342d59+0,633892+100 */
+  background: #342d59; /* Old browsers */
+  background: -moz-linear-gradient(left, #342d59 0%, #633892 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #342d59 0%,#633892 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #342d59 0%,#633892 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#342d59', endColorstr='#633892',GradientType=1 ); /* IE6-9 */
+  color: white;
+}
+
+i {
+  font-size: 1.5rem;
+}
+
+button {
+  border: 1px solid white;
+  padding: 4px 16px;
+  background: transparent;
+  color: white;
+  text-transform: uppercase;
+}
+
+#app, .Main {
+  height: 100%;
+}
+
+.Main {
+  position: relative;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 24px;
+}
+
+.Header-text {
+  text-transform: uppercase;
+  position: relative;
+  top: 5px;
+}
+
+/* MAIN BODY AND PROJECT STYLES HERE */
+.Project-wrapper {
+  padding: 10px 0;
+  background: #4e4282;
+  max-width: 85%;
+  margin: 15px auto;
+  border-radius: 16px;
+}
+
+.Projectitem {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #3b3170;
+  padding: 8px 10px;
+}
+
+.Projectitem button {
+  height: 36px;
+  margin-top: 12px;
+}
+
+.newProjectWrapper {
+  padding: 10px;
+}
+
+.newProjectButton {
+  width: 30px;
+  height: 30px;
+  background: #63ce86;
+  display: inline-block;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 27px;
+  margin-left: 8px;
+}
+
+/* TIMER STYLES */
+.Timer {
+  max-height: 0px;
+  transition: all .25s;
+  overflow: hidden;
+  background: #4e4282;
+  max-width: 85%;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.Timer.active {
+  transition: all .75s;
+  max-height: 200px;
+}
+
+.Timer-inner {
+  padding: 10px;
+}
+
+.Timer button {
+  margin-bottom: 16px;
+}
+
+/* NEW PAGE STYLES */
+.New {
+  position: absolute;
+  left: 105%;
+  top: 0;
+  transition: all .5s;
+  width: 100%;
+  height: 100%;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#342d59+0,633892+100 */
+  background: #342d59; /* Old browsers */
+  background: -moz-linear-gradient(left, #342d59 0%, #633892 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #342d59 0%,#633892 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #342d59 0%,#633892 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#342d59', endColorstr='#633892',GradientType=1 ); /* IE6-9 */
+}
+
+.New-header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.New-header div {
+  width: 33%;
+}
+
+.New.active {
+  left: 0;
+}
+
+.New-body {
+  padding: 45px 10px;
+  background: #4e4282;
+  max-width: 85%;
+  margin: 15px auto;
+  border-radius: 16px;
+}
+
+.New-body input{
+  font-size: 16px;
+  padding: 6px;
+  position: relative;
+  top: 1px;
+}
+
+.New-body button {
+  margin-top: 8px;
+}
+
+/* CALENDAR STYLES */
+.Calendar {
+  position: absolute;
+  left: 105%;
+  top: 0;
+  transition: all .5s;
+  width: 100%;
+  height: 100%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#342d59+0,633892+100 */
+  background: #342d59; /* Old browsers */
+  background: -moz-linear-gradient(left, #342d59 0%, #633892 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #342d59 0%,#633892 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #342d59 0%,#633892 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#342d59', endColorstr='#633892',GradientType=1 ); /* IE6-9 */
+}
+
+.Calendar-header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.Calendar-header div {
+  width: 33%;
+}
+
+.Calendar.active {
+  left: 0;
+}
+
+.Calendar-body {
+  padding: 10px 0;
+  background: #4e4282;
+  max-width: 85%;
+  margin: 15px auto;
+  border-radius: 16px;
+}
+
+/* DAY VIEW STYLES */
+.Day-view {
+  position: absolute;
+  left: 105%;
+  top: 0;
+  transition: all .5s;
+  width: 100%;
+  height: 100%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#342d59+0,633892+100 */
+  background: #342d59; /* Old browsers */
+  background: -moz-linear-gradient(left, #342d59 0%, #633892 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #342d59 0%,#633892 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #342d59 0%,#633892 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#342d59', endColorstr='#633892',GradientType=1 ); /* IE6-9 */
+  z-index: 3;
+}
+
+.Day-view-header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.Day-view-header div {
+  width: 33%;
+}
+
+.Day-view.active {
+  left: 0;
+}
+
+.Day-view-body {
+  padding: 10px;
+  background: #4e4282;
+  max-width: 85%;
+  margin: 15px auto;
+  border-radius: 16px;
+}
+
+.Day-view-body h2 {
+  border-top: 1px solid #3b3170;
+  padding-top: 24px;
+}
+
+
+/* REPORTS VIEW STYLES? */
+.Reports{
+  position: absolute;
+  left: 105%;
+  top: 0;
+  transition: all .5s;
+  width: 100%;
+  height: 100%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#342d59+0,633892+100 */
+  background: #342d59; /* Old browsers */
+  background: -moz-linear-gradient(left, #342d59 0%, #633892 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #342d59 0%,#633892 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #342d59 0%,#633892 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#342d59', endColorstr='#633892',GradientType=1 ); /* IE6-9 */
+  z-index: 3;
+}
+
+.Reports-header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.Reports-header div {
+  width: 33%;
+}
+
+.Reports.active {
+  left: 0;
+}
+
+.Reports-body {
+  padding: 10px;
+  background: #4e4282;
+  max-width: 85%;
+  margin: 15px auto;
+  border-radius: 16px;
+}
+
+.Reports-body input {
+  font-size: 16px;
+}
+
+.Reports-body label {
+  padding-right: 10px;
+}
+
+.Reports-body button {
+  margin-top: 8px;
+}
+
+.Reports-dayValue {
+  display: flex;
+}
+
+.Reports-dayValue p {
+  padding: 0 8px;
+  margin-bottom: 0px;
+}
