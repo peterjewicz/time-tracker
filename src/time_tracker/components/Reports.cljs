@@ -69,7 +69,6 @@
         (.setTextColor doc "#fff") ; font color for header
         (.setFillColor doc "#633892")
         (.rect doc 0, (- (* 15 @current-pdf-offset) 9 ), 250, 12, "FD")
-        ; rect(x, y, w, h, style)
         (.text doc (str (name (first project))), 10, (* 15 @current-pdf-offset))
         (.setFontSize doc 12) ; body text font size
         (.setTextColor doc "#000") ; font color for body text
@@ -107,12 +106,14 @@
         [:div [:h3 "Reports"]]
         [:div]]
       [:div.Reports-body
-        [:p "Generate New Report"]
-        [:label "Start Date"]
-        [pikaday/date-selector {:date-atom start-date}]
+        [:h3 "Generate New Report"]
+        [:div.datepickerWrapper
+          [:label "Start Date"]
+          [pikaday/date-selector {:date-atom start-date :readonly true}]]
         [:br]
-        [:label "End Date"]
-        [pikaday/date-selector. {:date-atom end-date}]
+        [:div.datepickerWrapper
+          [:label "End Date"]
+          [pikaday/date-selector. {:date-atom end-date :readonly true}]]
         [:button {:on-click #(generate-report (:projectDates @app-state))} "Generate"]
         [:button {:on-click #(download-report (:projectDates @app-state))} "Download"]
         [:div.Reports-list
