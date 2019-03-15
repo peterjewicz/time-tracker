@@ -115,7 +115,7 @@
           [:label "End Date"]
           [pikaday/date-selector. {:date-atom end-date :readonly true}]]
         [:button {:on-click #(generate-report (:projectDates @app-state))} "Generate"]
-        [:button {:on-click #(download-report (:projectDates @app-state))} "Download"]
+        [:button {:on-click #(download-report (:projectDates @app-state))} "Email Report"]
         [:div.Reports-list
           (doall (for [project @current-report]
             (do

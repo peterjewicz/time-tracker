@@ -111,7 +111,7 @@ button {
 
 /* NEW PAGE STYLES */
 .New {
-  position: absolute;
+  position: fixed;
   left: 105%;
   top: 0;
   transition: all .5s;
@@ -160,7 +160,7 @@ button {
 
 /* CALENDAR STYLES */
 .Calendar {
-  position: absolute;
+  position: fixed;
   left: 105%;
   top: 0;
   transition: all .5s;
@@ -198,7 +198,7 @@ button {
 
 /* DAY VIEW STYLES */
 .Day-view {
-  position: absolute;
+  position: fixed;
   left: 105%;
   top: 0;
   transition: all .5s;
@@ -243,8 +243,9 @@ button {
 
 /* REPORTS VIEW STYLES? */
 .Reports{
-  position: absolute;
+  position: fixed;
   left: 105%;
+  overflow: scroll;
   top: 0;
   transition: all .5s;
   width: 100%;
