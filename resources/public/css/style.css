@@ -1,4 +1,10 @@
-/* some style */
+/* some style */]
+@font-face {
+  font-family: raleway;
+  src: url(./Raleway-Regular.ttf);
+}
+
+
 html, body {
   padding: 0;
   margin: 0;
@@ -13,6 +19,8 @@ html, body {
   color: white;
   overflow: hidden;
   overflow-y: scroll;
+  font-family: 'raleway', sans-serif;
+  font-weight: 400;
 }
 
 
@@ -62,6 +70,7 @@ button {
   justify-content: space-between;
   border-bottom: 1px solid #3b3170;
   padding: 8px 10px;
+  text-transform: capitalize;
 }
 
 .Projectitem button {
