@@ -3,9 +3,15 @@
             [time_tracker.utilities.view_handler :as view_handler]
             ["moment" :as moment]))
 
+; TODO DRY this up a bit also need to test on a month in the double digits to make sure it doesn't break
 (defn open-day-view [date app-state]
-  (swap! app-state conj {:activeDate date})
-  (view_handler/change-view {:day "active"}))
+  (if (and (not (= (first date) "0")) (= (second date) "/") )
+    (do
+      (swap! app-state conj {:activeDate (str "0" date)})
+      (view_handler/change-view {:day "active"}))
+    (do
+      (swap! app-state conj {:activeDate date})
+      (view_handler/change-view {:day "active"}))))
 
 
 (defn get-visible-dates [projects]
@@ -52,7 +58,6 @@
         (if (= x 8)
           row
           (do
-            ; (print date-values)
             (if (< (- (+ i x) offsetAmount) 10)
               (do ; if < 10 we add the 0 or it will fails - TODO might want to reorganize this lots of repeat
                 (if ( some #{(str currentMonth "/0" (- (+ i x) offsetAmount) "/" currentYear)} date-values)
@@ -83,10 +88,12 @@
     (do
       (reset! monthDays (get-current-month-days 1))
       (swap! currentYear (fn [current] (increment-year current)))
-      1)
+      01)
     (do
       (reset! monthDays (get-current-month-days (inc (js/parseInt current))))
-      (inc (js/parseInt current)))))
+      (if (< current 9)
+        (str "0" (inc (js/parseInt current)))
+        (inc (js/parseInt current))))))
 
 (defn deincrement-month [current currentYear monthDays]
   (if (= current 1)
@@ -95,8 +102,10 @@
       (swap! currentYear (fn [current] (deincrement-year current)))
       12)
     (do
-      (reset! monthDays (get-current-month-days (- (js/parseInt current) 1)))
-      (- (js/parseInt current) 1))))
+      (reset! monthDays (get-current-month-days (- (js/parseInt current) 01)))
+      (if (<= current 10)
+      (str "0" (- (js/parseInt current) 1))
+      (- (js/parseInt current) 1)))))
 
 
 (defn render [app-state]

@@ -69,7 +69,6 @@
         (.setTextColor doc "#fff") ; font color for header
         (.setFillColor doc "#633892")
         (.rect doc 0, (- (* 15 @current-pdf-offset) 9 ), 250, 12, "FD")
-        ; rect(x, y, w, h, style)
         (.text doc (str (name (first project))), 10, (* 15 @current-pdf-offset))
         (.setFontSize doc 12) ; body text font size
         (.setTextColor doc "#000") ; font color for body text
@@ -91,13 +90,12 @@
 
           )
       )))
-    ; (.save doc "Your_Time_Report.pdf") ;This works but we want to test on actual device
+
+    ; (.save doc "Your_Time_Report.pdf") ;This works but we want to test on actual device LEAVE FOR TESTING PDF GENERATION
     (js/alert "Time Report Generated")
     (.open (.-email (.-plugins js/cordova)) (clj->js { :body "test tst" :to (to-array [""]) :subject "Your Time Report"
-      :attachments (to-array [  (str "base64:report.pdf//" (js/btoa (.output doc)))  ])
-      }))
-    (reset! current-pdf-offset 1)
-  ))
+      :attachments (to-array [  (str "base64:report.pdf//" (js/btoa (.output doc)))  ])}))
+    (reset! current-pdf-offset 1)))
 
 (defn render [app-state]
   (let [project-name (atom "")]
@@ -108,14 +106,16 @@
         [:div [:h3 "Reports"]]
         [:div]]
       [:div.Reports-body
-        [:p "Generate New Report"]
-        [:label "Start Date"]
-        [pikaday/date-selector {:date-atom start-date}]
+        [:h3 "Generate New Report"]
+        [:div.datepickerWrapper
+          [:label "Start Date"]
+          [pikaday/date-selector {:date-atom start-date :readonly true}]]
         [:br]
-        [:label "End Date"]
-        [pikaday/date-selector. {:date-atom end-date}]
+        [:div.datepickerWrapper
+          [:label "End Date"]
+          [pikaday/date-selector. {:date-atom end-date :readonly true}]]
         [:button {:on-click #(generate-report (:projectDates @app-state))} "Generate"]
-        [:button {:on-click #(download-report (:projectDates @app-state))} "Download"]
+        [:button {:on-click #(download-report (:projectDates @app-state))} "Email Report"]
         [:div.Reports-list
           (doall (for [project @current-report]
             (do
