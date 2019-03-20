@@ -86,9 +86,9 @@
 (defn increment-month [current currentYear monthDays]
   (if (= current 12)
     (do
-      (reset! monthDays (get-current-month-days 1))
+      (reset! monthDays (get-current-month-days 01))
       (swap! currentYear (fn [current] (increment-year current)))
-      01)
+      "01") ; We need a string here or it will strip the '0' and cause the date to now show
     (do
       (reset! monthDays (get-current-month-days (inc (js/parseInt current))))
       (if (< current 9)
@@ -96,7 +96,7 @@
         (inc (js/parseInt current))))))
 
 (defn deincrement-month [current currentYear monthDays]
-  (if (= current 1)
+  (if (= current "01")
     (do
       (reset! monthDays (get-current-month-days 12))
       (swap! currentYear (fn [current] (deincrement-year current)))
