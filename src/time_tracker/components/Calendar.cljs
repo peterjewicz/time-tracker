@@ -88,7 +88,7 @@
     (do
       (reset! monthDays (get-current-month-days 01))
       (swap! currentYear (fn [current] (increment-year current)))
-      "01") ; We need a string here or it will strip the '0' and cause the date to now show
+      "01") ; We need a string here or it will strip the '0' and cause the date to not show
     (do
       (reset! monthDays (get-current-month-days (inc (js/parseInt current))))
       (if (< current 9)
