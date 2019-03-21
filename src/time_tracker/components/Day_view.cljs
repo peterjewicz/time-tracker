@@ -41,10 +41,10 @@
           (doall (for [entry currentEnteries]
             (for [dates entry]
               (if (= (type dates) clojure.core/Keyword)
-              (do [:h2 dates])
+              (do [:h2 {:key dates} dates])
               (do
                 (loop [i 0
-                       html [:div]]
+                       html [:div {:key (str dates "-" i)}]]
                   (if (= i (count dates))
                     html
                     (do

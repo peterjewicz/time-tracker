@@ -46,8 +46,8 @@ return (function (){
 return time_tracker.utilities.view_handler.change_view.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"add-new","add-new",-1399275206),false], null));
 });})(project_name))
 ], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"i.fas.fa-long-arrow-alt-left","i.fas.fa-long-arrow-alt-left",1932573860)], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),"Add New Project"], null)], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.New-body","div.New-body",525888776),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"type","type",1174270348),"text",new cljs.core.Keyword(null,"value","value",305978217),cljs.core.deref.call(null,project_name),new cljs.core.Keyword(null,"placeholder","placeholder",-104873083),"Project Name",new cljs.core.Keyword(null,"on-change","on-change",-732046149),((function (project_name){
-return (function (p1__28237_SHARP_){
-return cljs.core.reset_BANG_.call(null,project_name,p1__28237_SHARP_.target.value);
+return (function (p1__21911_SHARP_){
+return cljs.core.reset_BANG_.call(null,project_name,p1__21911_SHARP_.target.value);
 });})(project_name))
 ], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"button","button",1456579943),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (project_name){
 return (function (){
@@ -58,4 +58,4 @@ return time_tracker.components.New.add_project.call(null,project_name,app_state)
 ;})(project_name))
 });
 
-//# sourceMappingURL=New.js.map?rel=1551967344132
+//# sourceMappingURL=New.js.map?rel=1553121265436

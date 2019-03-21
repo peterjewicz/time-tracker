@@ -3,9 +3,15 @@
             [time_tracker.utilities.view_handler :as view_handler]
             ["moment" :as moment]))
 
+; TODO DRY this up a bit also need to test on a month in the double digits to make sure it doesn't break
 (defn open-day-view [date app-state]
-  (swap! app-state conj {:activeDate date})
-  (view_handler/change-view {:day "active"}))
+  (if (and (not (= (first date) "0")) (= (second date) "/") )
+    (do
+      (swap! app-state conj {:activeDate (str "0" date)})
+      (view_handler/change-view {:day "active"}))
+    (do
+      (swap! app-state conj {:activeDate date})
+      (view_handler/change-view {:day "active"}))))
 
 
 (defn get-visible-dates [projects]
@@ -52,7 +58,6 @@
         (if (= x 8)
           row
           (do
-            ; (print date-values)
             (if (< (- (+ i x) offsetAmount) 10)
               (do ; if < 10 we add the 0 or it will fails - TODO might want to reorganize this lots of repeat
                 (if ( some #{(str currentMonth "/0" (- (+ i x) offsetAmount) "/" currentYear)} date-values)
@@ -81,22 +86,26 @@
 (defn increment-month [current currentYear monthDays]
   (if (= current 12)
     (do
-      (reset! monthDays (get-current-month-days 1))
+      (reset! monthDays (get-current-month-days 01))
       (swap! currentYear (fn [current] (increment-year current)))
-      1)
+      "01") ; We need a string here or it will strip the '0' and cause the date to not show
     (do
       (reset! monthDays (get-current-month-days (inc (js/parseInt current))))
-      (inc (js/parseInt current)))))
+      (if (< current 9)
+        (str "0" (inc (js/parseInt current)))
+        (inc (js/parseInt current))))))
 
 (defn deincrement-month [current currentYear monthDays]
-  (if (= current 1)
+  (if (= current "01")
     (do
       (reset! monthDays (get-current-month-days 12))
       (swap! currentYear (fn [current] (deincrement-year current)))
       12)
     (do
-      (reset! monthDays (get-current-month-days (- (js/parseInt current) 1)))
-      (- (js/parseInt current) 1))))
+      (reset! monthDays (get-current-month-days (- (js/parseInt current) 01)))
+      (if (<= current 10)
+      (str "0" (- (js/parseInt current) 1))
+      (- (js/parseInt current) 1)))))
 
 
 (defn render [app-state]
@@ -105,6 +114,7 @@
         monthDays (atom (get-current-month-days @currentMonth))
         visibleDates (get-visible-dates (:projectDates @app-state))]
     (fn []
+      (print (:projectDates @app-state)) ; TODO remove this but it forces the reload of the component on update
       [:div.Calendar {:class (:calendar @view_handler/active-view)}
         [:div.Calendar-header
           [:div [:p {:on-click #(view_handler/change-view {:calendar false})} [:i.fas.fa-long-arrow-alt-left]]]
