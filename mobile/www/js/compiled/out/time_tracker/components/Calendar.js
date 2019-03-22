@@ -18,87 +18,87 @@ return time_tracker.utilities.view_handler.change_view.call(null,new cljs.core.P
 time_tracker.components.Calendar.get_visible_dates = (function time_tracker$components$Calendar$get_visible_dates(projects){
 
 var returnDates = reagent.core.atom.call(null,cljs.core.PersistentVector.EMPTY);
-var seq__27674_27678 = cljs.core.seq.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [projects], null));
-var chunk__27675_27679 = null;
-var count__27676_27680 = (0);
-var i__27677_27681 = (0);
+var seq__27518_27522 = cljs.core.seq.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [projects], null));
+var chunk__27519_27523 = null;
+var count__27520_27524 = (0);
+var i__27521_27525 = (0);
 while(true){
-if((i__27677_27681 < count__27676_27680)){
-var date_27682 = cljs.core._nth.call(null,chunk__27675_27679,i__27677_27681);
-var currentKey_27683 = cljs.core.first.call(null,cljs.core.keys.call(null,cljs.core.js__GT_clj.call(null,date_27682)));
-var mappedValue_27684 = cljs.core.into.call(null,cljs.core.js__GT_clj.call(null,date_27682),cljs.core.PersistentArrayMap.EMPTY);
-var dates_27685 = cljs.core.keys.call(null,cljs.core.get.call(null,mappedValue_27684,currentKey_27683));
-var i_27686 = (0);
-var formattedDates_27687 = cljs.core.PersistentVector.EMPTY;
+if((i__27521_27525 < count__27520_27524)){
+var date_27526 = cljs.core._nth.call(null,chunk__27519_27523,i__27521_27525);
+var currentKey_27527 = cljs.core.first.call(null,cljs.core.keys.call(null,cljs.core.js__GT_clj.call(null,date_27526)));
+var mappedValue_27528 = cljs.core.into.call(null,cljs.core.js__GT_clj.call(null,date_27526),cljs.core.PersistentArrayMap.EMPTY);
+var dates_27529 = cljs.core.keys.call(null,cljs.core.get.call(null,mappedValue_27528,currentKey_27527));
+var i_27530 = (0);
+var formattedDates_27531 = cljs.core.PersistentVector.EMPTY;
 while(true){
-if(cljs.core._EQ_.call(null,i_27686,cljs.core.count.call(null,dates_27685))){
+if(cljs.core._EQ_.call(null,i_27530,cljs.core.count.call(null,dates_27529))){
 } else {
-cljs.core.swap_BANG_.call(null,returnDates,cljs.core.conj,[cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.first.call(null,cljs.core.nth.call(null,dates_27685,i_27686))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.second.call(null,cljs.core.nth.call(null,dates_27685,i_27686))),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27685,i_27686),(2))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27685,i_27686),(3))),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27685,i_27686),(4))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27685,i_27686),(5))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27685,i_27686),(6))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27685,i_27686),(7)))].join(''));
+cljs.core.swap_BANG_.call(null,returnDates,cljs.core.conj,[cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.first.call(null,cljs.core.nth.call(null,dates_27529,i_27530))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.second.call(null,cljs.core.nth.call(null,dates_27529,i_27530))),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27529,i_27530),(2))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27529,i_27530),(3))),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27529,i_27530),(4))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27529,i_27530),(5))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27529,i_27530),(6))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27529,i_27530),(7)))].join(''));
 
-var G__27688 = (i_27686 + (1));
-var G__27689 = cljs.core.conj.call(null,formattedDates_27687,cljs.core.nth.call(null,dates_27685,i_27686));
-i_27686 = G__27688;
-formattedDates_27687 = G__27689;
+var G__27532 = (i_27530 + (1));
+var G__27533 = cljs.core.conj.call(null,formattedDates_27531,cljs.core.nth.call(null,dates_27529,i_27530));
+i_27530 = G__27532;
+formattedDates_27531 = G__27533;
 continue;
 }
 break;
 }
 
 
-var G__27690 = seq__27674_27678;
-var G__27691 = chunk__27675_27679;
-var G__27692 = count__27676_27680;
-var G__27693 = (i__27677_27681 + (1));
-seq__27674_27678 = G__27690;
-chunk__27675_27679 = G__27691;
-count__27676_27680 = G__27692;
-i__27677_27681 = G__27693;
+var G__27534 = seq__27518_27522;
+var G__27535 = chunk__27519_27523;
+var G__27536 = count__27520_27524;
+var G__27537 = (i__27521_27525 + (1));
+seq__27518_27522 = G__27534;
+chunk__27519_27523 = G__27535;
+count__27520_27524 = G__27536;
+i__27521_27525 = G__27537;
 continue;
 } else {
-var temp__5457__auto___27694 = cljs.core.seq.call(null,seq__27674_27678);
-if(temp__5457__auto___27694){
-var seq__27674_27695__$1 = temp__5457__auto___27694;
-if(cljs.core.chunked_seq_QMARK_.call(null,seq__27674_27695__$1)){
-var c__4319__auto___27696 = cljs.core.chunk_first.call(null,seq__27674_27695__$1);
-var G__27697 = cljs.core.chunk_rest.call(null,seq__27674_27695__$1);
-var G__27698 = c__4319__auto___27696;
-var G__27699 = cljs.core.count.call(null,c__4319__auto___27696);
-var G__27700 = (0);
-seq__27674_27678 = G__27697;
-chunk__27675_27679 = G__27698;
-count__27676_27680 = G__27699;
-i__27677_27681 = G__27700;
+var temp__5457__auto___27538 = cljs.core.seq.call(null,seq__27518_27522);
+if(temp__5457__auto___27538){
+var seq__27518_27539__$1 = temp__5457__auto___27538;
+if(cljs.core.chunked_seq_QMARK_.call(null,seq__27518_27539__$1)){
+var c__4319__auto___27540 = cljs.core.chunk_first.call(null,seq__27518_27539__$1);
+var G__27541 = cljs.core.chunk_rest.call(null,seq__27518_27539__$1);
+var G__27542 = c__4319__auto___27540;
+var G__27543 = cljs.core.count.call(null,c__4319__auto___27540);
+var G__27544 = (0);
+seq__27518_27522 = G__27541;
+chunk__27519_27523 = G__27542;
+count__27520_27524 = G__27543;
+i__27521_27525 = G__27544;
 continue;
 } else {
-var date_27701 = cljs.core.first.call(null,seq__27674_27695__$1);
-var currentKey_27702 = cljs.core.first.call(null,cljs.core.keys.call(null,cljs.core.js__GT_clj.call(null,date_27701)));
-var mappedValue_27703 = cljs.core.into.call(null,cljs.core.js__GT_clj.call(null,date_27701),cljs.core.PersistentArrayMap.EMPTY);
-var dates_27704 = cljs.core.keys.call(null,cljs.core.get.call(null,mappedValue_27703,currentKey_27702));
-var i_27705 = (0);
-var formattedDates_27706 = cljs.core.PersistentVector.EMPTY;
+var date_27545 = cljs.core.first.call(null,seq__27518_27539__$1);
+var currentKey_27546 = cljs.core.first.call(null,cljs.core.keys.call(null,cljs.core.js__GT_clj.call(null,date_27545)));
+var mappedValue_27547 = cljs.core.into.call(null,cljs.core.js__GT_clj.call(null,date_27545),cljs.core.PersistentArrayMap.EMPTY);
+var dates_27548 = cljs.core.keys.call(null,cljs.core.get.call(null,mappedValue_27547,currentKey_27546));
+var i_27549 = (0);
+var formattedDates_27550 = cljs.core.PersistentVector.EMPTY;
 while(true){
-if(cljs.core._EQ_.call(null,i_27705,cljs.core.count.call(null,dates_27704))){
+if(cljs.core._EQ_.call(null,i_27549,cljs.core.count.call(null,dates_27548))){
 } else {
-cljs.core.swap_BANG_.call(null,returnDates,cljs.core.conj,[cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.first.call(null,cljs.core.nth.call(null,dates_27704,i_27705))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.second.call(null,cljs.core.nth.call(null,dates_27704,i_27705))),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27704,i_27705),(2))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27704,i_27705),(3))),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27704,i_27705),(4))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27704,i_27705),(5))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27704,i_27705),(6))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27704,i_27705),(7)))].join(''));
+cljs.core.swap_BANG_.call(null,returnDates,cljs.core.conj,[cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.first.call(null,cljs.core.nth.call(null,dates_27548,i_27549))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.second.call(null,cljs.core.nth.call(null,dates_27548,i_27549))),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27548,i_27549),(2))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27548,i_27549),(3))),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27548,i_27549),(4))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27548,i_27549),(5))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27548,i_27549),(6))),cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.nth.call(null,cljs.core.nth.call(null,dates_27548,i_27549),(7)))].join(''));
 
-var G__27707 = (i_27705 + (1));
-var G__27708 = cljs.core.conj.call(null,formattedDates_27706,cljs.core.nth.call(null,dates_27704,i_27705));
-i_27705 = G__27707;
-formattedDates_27706 = G__27708;
+var G__27551 = (i_27549 + (1));
+var G__27552 = cljs.core.conj.call(null,formattedDates_27550,cljs.core.nth.call(null,dates_27548,i_27549));
+i_27549 = G__27551;
+formattedDates_27550 = G__27552;
 continue;
 }
 break;
 }
 
 
-var G__27709 = cljs.core.next.call(null,seq__27674_27695__$1);
-var G__27710 = null;
-var G__27711 = (0);
-var G__27712 = (0);
-seq__27674_27678 = G__27709;
-chunk__27675_27679 = G__27710;
-count__27676_27680 = G__27711;
-i__27677_27681 = G__27712;
+var G__27553 = cljs.core.next.call(null,seq__27518_27539__$1);
+var G__27554 = null;
+var G__27555 = (0);
+var G__27556 = (0);
+seq__27518_27522 = G__27553;
+chunk__27519_27523 = G__27554;
+count__27520_27524 = G__27555;
+i__27521_27525 = G__27556;
 continue;
 }
 } else {
@@ -134,38 +134,38 @@ return row;
 } else {
 if((((i + x) - offsetAmount) < (10))){
 if(cljs.core.truth_(cljs.core.some.call(null,cljs.core.PersistentHashSet.createAsIfByAssoc([[cljs.core.str.cljs$core$IFn$_invoke$arity$1(currentMonth),"/0",cljs.core.str.cljs$core$IFn$_invoke$arity$1(((i + x) - offsetAmount)),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(currentYear)].join('')]),date_values))){
-var G__27713 = (x + (1));
-var G__27714 = cljs.core.conj.call(null,row,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td.active","td.active",1072089856),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (x,row){
+var G__27557 = (x + (1));
+var G__27558 = cljs.core.conj.call(null,row,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td.active","td.active",1072089856),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (x,row){
 return (function (){
 return time_tracker.components.Calendar.open_day_view.call(null,[cljs.core.str.cljs$core$IFn$_invoke$arity$1(currentMonth),"/0",cljs.core.str.cljs$core$IFn$_invoke$arity$1(((i + x) - offsetAmount)),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(currentYear)].join(''),app_state);
 });})(x,row))
 ], null),time_tracker.components.Calendar.get_day_display.call(null,offsetAmount,numberOfDays,(i + x))], null));
-x = G__27713;
-row = G__27714;
+x = G__27557;
+row = G__27558;
 continue;
 } else {
-var G__27715 = (x + (1));
-var G__27716 = cljs.core.conj.call(null,row,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),time_tracker.components.Calendar.get_day_display.call(null,offsetAmount,numberOfDays,(i + x))], null));
-x = G__27715;
-row = G__27716;
+var G__27559 = (x + (1));
+var G__27560 = cljs.core.conj.call(null,row,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),time_tracker.components.Calendar.get_day_display.call(null,offsetAmount,numberOfDays,(i + x))], null));
+x = G__27559;
+row = G__27560;
 continue;
 }
 } else {
 if(cljs.core.truth_(cljs.core.some.call(null,cljs.core.PersistentHashSet.createAsIfByAssoc([[cljs.core.str.cljs$core$IFn$_invoke$arity$1(currentMonth),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(((i + x) - offsetAmount)),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(currentYear)].join('')]),date_values))){
-var G__27717 = (x + (1));
-var G__27718 = cljs.core.conj.call(null,row,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td.active","td.active",1072089856),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (x,row){
+var G__27561 = (x + (1));
+var G__27562 = cljs.core.conj.call(null,row,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td.active","td.active",1072089856),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (x,row){
 return (function (){
 return time_tracker.components.Calendar.open_day_view.call(null,[cljs.core.str.cljs$core$IFn$_invoke$arity$1(currentMonth),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(((i + x) - offsetAmount)),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(currentYear)].join(''),app_state);
 });})(x,row))
 ], null),time_tracker.components.Calendar.get_day_display.call(null,offsetAmount,numberOfDays,(i + x))], null));
-x = G__27717;
-row = G__27718;
+x = G__27561;
+row = G__27562;
 continue;
 } else {
-var G__27719 = (x + (1));
-var G__27720 = cljs.core.conj.call(null,row,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),time_tracker.components.Calendar.get_day_display.call(null,offsetAmount,numberOfDays,(i + x))], null));
-x = G__27719;
-row = G__27720;
+var G__27563 = (x + (1));
+var G__27564 = cljs.core.conj.call(null,row,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"td","td",1479933353),time_tracker.components.Calendar.get_day_display.call(null,offsetAmount,numberOfDays,(i + x))], null));
+x = G__27563;
+row = G__27564;
 continue;
 }
 }
@@ -182,10 +182,10 @@ while(true){
 if((i >= loopTotal)){
 return html;
 } else {
-var G__27721 = (i + (7));
-var G__27722 = cljs.core.conj.call(null,html,time_tracker.components.Calendar.generate_table_row.call(null,offsetAmount,numberOfDays,i,currentMonth,currentYear,date_values,app_state));
-i = G__27721;
-html = G__27722;
+var G__27565 = (i + (7));
+var G__27566 = cljs.core.conj.call(null,html,time_tracker.components.Calendar.generate_table_row.call(null,offsetAmount,numberOfDays,i,currentMonth,currentYear,date_values,app_state));
+i = G__27565;
+html = G__27566;
 continue;
 }
 break;
@@ -239,34 +239,31 @@ time_tracker.components.Calendar.render = (function time_tracker$components$Cale
 var currentMonth = reagent.core.atom.call(null,module$Applications$server$time_tracker$node_modules$moment$moment["default"]().format("MM"));
 var currentYear = reagent.core.atom.call(null,module$Applications$server$time_tracker$node_modules$moment$moment["default"]().format("YYYY"));
 var monthDays = reagent.core.atom.call(null,time_tracker.components.Calendar.get_current_month_days.call(null,cljs.core.deref.call(null,currentMonth)));
-var visibleDates = time_tracker.components.Calendar.get_visible_dates.call(null,new cljs.core.Keyword(null,"projectDates","projectDates",760851171).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,app_state)));
-return ((function (currentMonth,currentYear,monthDays,visibleDates){
+return ((function (currentMonth,currentYear,monthDays){
 return (function (){
-cljs.core.print.call(null,new cljs.core.Keyword(null,"projectDates","projectDates",760851171).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,app_state)));
-
-return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.Calendar","div.Calendar",-810226548),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),new cljs.core.Keyword(null,"calendar","calendar",62308146).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,time_tracker.utilities.view_handler.active_view))], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.Calendar-header","div.Calendar-header",-509842471),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (currentMonth,currentYear,monthDays,visibleDates){
+return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.Calendar","div.Calendar",-810226548),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),new cljs.core.Keyword(null,"calendar","calendar",62308146).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,time_tracker.utilities.view_handler.active_view))], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.Calendar-header","div.Calendar-header",-509842471),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (currentMonth,currentYear,monthDays){
 return (function (){
 return time_tracker.utilities.view_handler.change_view.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"calendar","calendar",62308146),false], null));
-});})(currentMonth,currentYear,monthDays,visibleDates))
-], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"i.fas.fa-long-arrow-alt-left","i.fas.fa-long-arrow-alt-left",1932573860)], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),"Calendar"], null)], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.Calendar-body","div.Calendar-body",1455692637),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.Calendar-Header","div.Calendar-Header",-409061792),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p.Calendar-arrow","p.Calendar-arrow",-1111322593),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (currentMonth,currentYear,monthDays,visibleDates){
+});})(currentMonth,currentYear,monthDays))
+], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"i.fas.fa-long-arrow-alt-left","i.fas.fa-long-arrow-alt-left",1932573860)], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"h3","h3",2067611163),"Calendar"], null)], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.Calendar-body","div.Calendar-body",1455692637),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div.Calendar-Header","div.Calendar-Header",-409061792),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p.Calendar-arrow","p.Calendar-arrow",-1111322593),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (currentMonth,currentYear,monthDays){
 return (function (){
-return cljs.core.swap_BANG_.call(null,currentMonth,((function (currentMonth,currentYear,monthDays,visibleDates){
+return cljs.core.swap_BANG_.call(null,currentMonth,((function (currentMonth,currentYear,monthDays){
 return (function (current,currentYear__$1){
 return time_tracker.components.Calendar.deincrement_month.call(null,current,currentYear__$1,monthDays);
-});})(currentMonth,currentYear,monthDays,visibleDates))
+});})(currentMonth,currentYear,monthDays))
 ,currentYear,monthDays);
-});})(currentMonth,currentYear,monthDays,visibleDates))
-], null),"<-"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p.Calendar-Title","p.Calendar-Title",1330416951),[cljs.core.str.cljs$core$IFn$_invoke$arity$1(module$Applications$server$time_tracker$node_modules$moment$moment["default"](cljs.core.deref.call(null,currentMonth),"MM").format("MMMM"))," ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,currentYear))].join('')], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p.Calendar-arrow","p.Calendar-arrow",-1111322593),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (currentMonth,currentYear,monthDays,visibleDates){
+});})(currentMonth,currentYear,monthDays))
+], null),"<"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p.Calendar-Title","p.Calendar-Title",1330416951),[cljs.core.str.cljs$core$IFn$_invoke$arity$1(module$Applications$server$time_tracker$node_modules$moment$moment["default"](cljs.core.deref.call(null,currentMonth),"MM").format("MMMM"))," ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,currentYear))].join('')], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"p.Calendar-arrow","p.Calendar-arrow",-1111322593),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"on-click","on-click",1632826543),((function (currentMonth,currentYear,monthDays){
 return (function (){
-return cljs.core.swap_BANG_.call(null,currentMonth,((function (currentMonth,currentYear,monthDays,visibleDates){
+return cljs.core.swap_BANG_.call(null,currentMonth,((function (currentMonth,currentYear,monthDays){
 return (function (current,currentYear__$1){
 return time_tracker.components.Calendar.increment_month.call(null,current,currentYear__$1,monthDays);
-});})(currentMonth,currentYear,monthDays,visibleDates))
+});})(currentMonth,currentYear,monthDays))
 ,currentYear,monthDays);
-});})(currentMonth,currentYear,monthDays,visibleDates))
-], null),"->"], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table.Calendar-wrapper","table.Calendar-wrapper",958754365),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"thead","thead",-291875296),new cljs.core.PersistentVector(null, 8, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Sun"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Mon"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Tue"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Wed"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Thur"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Fri"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Sat"], null)], null)], null),time_tracker.components.Calendar.generate_table_html.call(null,cljs.core.deref.call(null,monthDays),cljs.core.deref.call(null,currentMonth),cljs.core.deref.call(null,currentYear),visibleDates,app_state)], null)], null)], null)], null);
+});})(currentMonth,currentYear,monthDays))
+], null),">"], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"table.Calendar-wrapper","table.Calendar-wrapper",958754365),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"thead","thead",-291875296),new cljs.core.PersistentVector(null, 8, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"tr","tr",-1424774646),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Sun"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Mon"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Tue"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Wed"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Thur"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Fri"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"th","th",-545608566),"Sat"], null)], null)], null),time_tracker.components.Calendar.generate_table_html.call(null,cljs.core.deref.call(null,monthDays),cljs.core.deref.call(null,currentMonth),cljs.core.deref.call(null,currentYear),time_tracker.components.Calendar.get_visible_dates.call(null,new cljs.core.Keyword(null,"projectDates","projectDates",760851171).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,app_state))),app_state)], null)], null)], null)], null);
 });
-;})(currentMonth,currentYear,monthDays,visibleDates))
+;})(currentMonth,currentYear,monthDays))
 });
 
-//# sourceMappingURL=Calendar.js.map?rel=1553171336209
+//# sourceMappingURL=Calendar.js.map?rel=1553263407334
