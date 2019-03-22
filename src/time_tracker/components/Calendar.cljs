@@ -111,10 +111,8 @@
 (defn render [app-state]
   (let [currentMonth (atom (.format (moment) "MM"))
         currentYear (atom (.format (moment) "YYYY"))
-        monthDays (atom (get-current-month-days @currentMonth))
-        visibleDates (get-visible-dates (:projectDates @app-state))]
+        monthDays (atom (get-current-month-days @currentMonth))]
     (fn []
-      (print (:projectDates @app-state)) ; TODO remove this but it forces the reload of the component on update
       [:div.Calendar {:class (:calendar @view_handler/active-view)}
         [:div.Calendar-header
           [:div [:p {:on-click #(view_handler/change-view {:calendar false})} [:i.fas.fa-long-arrow-alt-left]]]
@@ -136,4 +134,4 @@
                   [:th "Thur"]
                   [:th "Fri"]
                   [:th "Sat"]]]
-                (generate-table-html @monthDays @currentMonth @currentYear visibleDates app-state)]]]])))
+                (generate-table-html @monthDays @currentMonth @currentYear (get-visible-dates (:projectDates @app-state)) app-state)]]]])))
