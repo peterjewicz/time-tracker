@@ -2,12 +2,13 @@
   (:require [reagent.core :as reagent :refer [atom]]
             [time_tracker.utilities.view_handler :as view_handler]
             [time_tracker.utilities.date_formatter :as date_formatter]
+            [time_tracker.components.datepicker :as datepicker]
             [cljs-pikaday.reagent :as pikaday]
             ["localforage" :as localforage]
             ["moment" :as moment]))
 
-(defonce start-date (reagent/atom (js/Date. (.setHours (js/Date.) 0 0 0 0))))
-(defonce end-date (reagent/atom (js/Date.)))
+(defonce start-date (reagent/atom (.format (moment (js/Date. (.setHours (js/Date.) 0 0 0 0))) "MM/DD/YYYY")))
+(defonce end-date (reagent/atom (.format (moment(js/Date.) ) "MM/DD/YYYY")))
 (defonce current-report (reagent/atom {}))
 (defonce current-pdf-offset (reagent/atom 1))
 
@@ -47,13 +48,8 @@
                       (let [htmlToSet @returnHtml
                             htmlToMerge {(keyword (nth currentKey i)) (get currentDates (nth currentKey i))}
                             currentVals ((keyword date) @returnHtml)]
-                        (swap! returnHtml conj {(keyword date) (conj currentVals htmlToMerge)})
-                        )
-                                ))
-                  (recur (inc i)))))
-
-      )
-      )
+                        (swap! returnHtml conj {(keyword date) (conj currentVals htmlToMerge)}))))
+                  (recur (inc i)))))))
   (reset! current-report @returnHtml)
   @returnHtml))
 
@@ -83,13 +79,7 @@
                   (do
                     (.addPage doc )
                     (reset! current-pdf-offset 1))
-                  (swap! current-pdf-offset inc))
-              )
-            )
-          )
-
-          )
-      )))
+                  (swap! current-pdf-offset inc)))))))))
 
     ; (.save doc "Your_Time_Report.pdf") ;This works but we want to test on actual device LEAVE FOR TESTING PDF GENERATION
     (js/alert "Time Report Generated")
@@ -109,11 +99,11 @@
         [:h3 "Generate New Report"]
         [:div.datepickerWrapper
           [:label "Start Date"]
-          [pikaday/date-selector {:date-atom start-date :readonly true}]]
+          [datepicker/datepicker start-date]]
         [:br]
         [:div.datepickerWrapper
           [:label "End Date"]
-          [pikaday/date-selector. {:date-atom end-date :readonly true}]]
+          [datepicker/datepicker end-date]]
         [:button {:on-click #(generate-report (:projectDates @app-state))} "Generate"]
         [:button {:on-click #(download-report (:projectDates @app-state))} "Email Report"]
         [:div.Reports-list

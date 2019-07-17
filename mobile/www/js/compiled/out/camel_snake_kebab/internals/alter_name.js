@@ -57,4 +57,4 @@ return cljs.core.symbol.call(null,f.call(null,cljs.core.name.call(null,this$__$1
 }
 });
 
-//# sourceMappingURL=alter_name.js.map?rel=1544380237907
+//# sourceMappingURL=alter_name.js.map?rel=1556144015993
