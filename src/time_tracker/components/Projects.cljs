@@ -9,16 +9,16 @@
                            :timerStart (Math/floor (/ (.getTime (js/Date.)) 1000))
                            :timerProject project
                            :timerRunning true})))
-(defn open-project-view []
-  (js/alert "Test"))
+(defn open-project-view [app-state name]
+  (swap! app-state conj {:projectViewProjct name})
+  (view_handler/change-view {:project-view "active"}))
 
 (defn render [app-state]
   (fn []
     [:div.Projects
       (doall (for [project (:projects @app-state)]
         [:div.Projectitem {:key project}
-          [:h3 {:on-click #(open-project-view)} project]
-          ; [:button "View Enteries"]
+          [:h3 {:on-click #(open-project-view app-state project)} project]
           [:button {:on-click #(start-timer app-state project)} "Start Timer"]]))
       [:div.newProjectWrapper {:on-click #(view_handler/change-view {:add-new "active"})}
         [:span "New Project "][:span.newProjectButton " +"]]]))

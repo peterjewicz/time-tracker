@@ -346,3 +346,52 @@ button {
   margin-bottom: 0px;
   margin-top: 35px;
 }
+
+
+/* PROJECT VIEW STYLES */
+.Project-view {
+  position: fixed;
+  overflow: scroll;
+  left: 105%;
+  top: 0;
+  transition: all .5s;
+  width: 100%;
+  height: 100%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#342d59+0,633892+100 */
+  background: #342d59; /* Old browsers */
+  background: -moz-linear-gradient(left, #342d59 0%, #633892 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #342d59 0%,#633892 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #342d59 0%,#633892 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#342d59', endColorstr='#633892',GradientType=1 ); /* IE6-9 */
+  z-index: 3;
+}
+
+.Project-view-header {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.Project-view-header div {
+  width: 33%;
+}
+
+.Project-view.active {
+  left: 0;
+}
+
+.Project-view-body {
+  padding-bottom: 100px; /* For ads */
+}
+
+.Project-view-dateTimeItem {
+  padding-left: 15px;
+}
+
+.Project-view-dateWrapper {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid white;
+  padding-left: 5px;
+  padding-right: 5px;
+}

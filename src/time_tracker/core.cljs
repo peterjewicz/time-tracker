@@ -21,6 +21,7 @@
                        :timerRunning false ;Shows whether timer is active - needed to properly clear interval
                        :projectDates project-dates ; Holds a mapping of the dates/times for all projects
                        :activeDay false ; Holds the currently selected day from the calendar - False when no date selected
+                       :projectViewProjct nil ; holds the name of the current project to display for Project_view component
                       }))
 
   (reagent/render-component [Main/render app-state]
