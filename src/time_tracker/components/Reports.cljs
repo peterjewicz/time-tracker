@@ -44,7 +44,6 @@
                         (check-time-after (+ 10 (.unix (moment (nth currentKey i) "MMDDYYYY"))) (.unix (moment @start-date)))
                         (check-time-before (- 10 (.unix (moment (nth currentKey i) "MMDDYYYY"))) (.unix (moment @end-date))))
                     (do
-
                       (let [htmlToSet @returnHtml
                             htmlToMerge {(keyword (nth currentKey i)) (get currentDates (nth currentKey i))}
                             currentVals ((keyword date) @returnHtml)]
@@ -108,14 +107,11 @@
         [:button {:on-click #(download-report (:projectDates @app-state))} "Email Report"]
         [:div.Reports-list
           (doall (for [project @current-report]
-            (do
               [:div {:key (str (first project) "-title")}
                 [:h3 {:key (first project)} (first project)]
               (for [date (second project)]
-                (do
                   (let [dateKey (first (first date))
                         dateItems (second (first date))]
-                    (doall
-                      [:div.Reports-dayValue {:key (str (first project) "-values")}
+                      [:div.Reports-dayValue {:key (str (first project) "-values-" (rand-int 1000))}
                         [:p (str (.format (moment (name dateKey) "MMDDYYYY") "LL") " : ")]
-                        [:p (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems)))]]))))])))]]])))
+                        [:p (date_formatter/format-time-taken 0 (* 1000 (date_formatter/get-total-seconds dateItems)))]]))]))]]])))
