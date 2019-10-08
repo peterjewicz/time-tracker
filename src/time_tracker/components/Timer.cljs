@@ -2,6 +2,7 @@
   (:require [reagent.core :as reagent :refer [atom]]
             [time_tracker.utilities.view_handler :as view_handler]
             [time_tracker.utilities.state :refer [update-project-dates]]
+            [time_tracker.utilities.timerHelpers :refer [set-timer-inactive]]
             ["localforage" :as localforage]
             ["moment" :as moment]))
 
@@ -19,6 +20,7 @@
                         (fn [value] (update-project-dates app-state))))))
   (js/clearInterval @interval)
   (reset! interval nil)
+  (set-timer-inactive)
   (swap! app-state conj {:timerActive false
                          :timerStart false
                          :timerProject false

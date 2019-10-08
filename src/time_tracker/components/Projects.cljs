@@ -1,14 +1,18 @@
 (ns time_tracker.components.Projects
   (:require [reagent.core :as reagent :refer [atom]]
-            [time_tracker.utilities.view_handler :as view_handler]))
+            [time_tracker.utilities.view_handler :as view_handler]
+            [time_tracker.utilities.timerHelpers :refer [set-timer-active]]))
 
 (defn start-timer [app-state project]
   (if (:timerActive @app-state)
     (js/alert "A Timer Is Already Running")
-    (swap! app-state conj {:timerActive "active"
-                           :timerStart (Math/floor (/ (.getTime (js/Date.)) 1000))
-                           :timerProject project
-                           :timerRunning true})))
+    (do
+      (set-timer-active [(Math/floor (/ (.getTime (js/Date.)) 1000)) project] #(js/console.log "Start Time Saved"))
+      (swap! app-state conj {:timerActive "active"
+                             :timerStart (Math/floor (/ (.getTime (js/Date.)) 1000))
+                             :timerProject project
+                             :timerRunning true}))))
+
 (defn open-project-view [app-state name]
   (swap! app-state conj {:projectViewProjct name})
   (view_handler/change-view {:project-view "active"}))

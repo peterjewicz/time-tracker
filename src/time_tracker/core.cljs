@@ -1,10 +1,17 @@
 (ns time-tracker.core
     (:require [reagent.core :as reagent :refer [atom]]
                [time_tracker.components.Main :as Main]
+               [time_tracker.utilities.timerHelpers :refer [get-timer-active]]
                ["localforage" :as localforage]))
 
 (enable-console-print!)
 
+(defn set-timer-active [app-state value]
+  (if value
+    (swap! app-state conj {:timerActive "active"
+                           :timerStart (first value)
+                           :timerProject (second value)
+                           :timerRunning true})))
 
 ; TODO we should move these over to the state utility we set up and handle everything there
 (defn get-project-dates [project-map]
@@ -23,7 +30,7 @@
                        :activeDay false ; Holds the currently selected day from the calendar - False when no date selected
                        :projectViewProjct nil ; holds the name of the current project to display for Project_view component
                       }))
-
+  (get-timer-active (partial set-timer-active app-state))
   (reagent/render-component [Main/render app-state]
                             (. js/document (getElementById "app")))))))
 
