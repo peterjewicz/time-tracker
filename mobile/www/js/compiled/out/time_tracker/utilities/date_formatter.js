@@ -18,10 +18,10 @@ while(true){
 if((i >= (cljs.core.count.call(null,timeArr) - (1)))){
 return total;
 } else {
-var G__22328 = ((2) + i);
-var G__22329 = ((cljs.core.nth.call(null,timeArr,((1) + i)) - cljs.core.nth.call(null,timeArr,i)) + total);
-i = G__22328;
-total = G__22329;
+var G__22327 = ((2) + i);
+var G__22328 = ((cljs.core.nth.call(null,timeArr,((1) + i)) - cljs.core.nth.call(null,timeArr,i)) + total);
+i = G__22327;
+total = G__22328;
 continue;
 }
 break;
@@ -47,4 +47,4 @@ cljs.core.swap_BANG_.call(null,time,cljs.core.conj,new cljs.core.PersistentArray
 return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(time_tracker.utilities.date_formatter.generate_time_string.call(null,new cljs.core.Keyword(null,"hours","hours",58380855).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,time))," Hour(s) ")),cljs.core.str.cljs$core$IFn$_invoke$arity$1(time_tracker.utilities.date_formatter.generate_time_string.call(null,new cljs.core.Keyword(null,"minutes","minutes",1319166394).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,time))," Minute(s) ")),cljs.core.str.cljs$core$IFn$_invoke$arity$1(time_tracker.utilities.date_formatter.generate_time_string.call(null,new cljs.core.Keyword(null,"total","total",1916810418).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,time))," Second(s)"))].join('');
 });
 
-//# sourceMappingURL=date_formatter.js.map?rel=1556144015618
+//# sourceMappingURL=date_formatter.js.map?rel=1570412433792

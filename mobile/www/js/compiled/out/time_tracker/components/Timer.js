@@ -4,6 +4,7 @@ goog.require('cljs.core');
 goog.require('reagent.core');
 goog.require('time_tracker.utilities.view_handler');
 goog.require('time_tracker.utilities.state');
+goog.require('time_tracker.utilities.timerHelpers');
 goog.require('module$Applications$server$time_tracker$node_modules$localforage$dist$localforage');
 goog.require('module$Applications$server$time_tracker$node_modules$moment$moment');
 time_tracker.components.Timer.end_timer = (function time_tracker$components$Timer$end_timer(app_state,interval){
@@ -25,6 +26,8 @@ return time_tracker.utilities.state.update_project_dates.call(null,app_state);
 clearInterval(cljs.core.deref.call(null,interval));
 
 cljs.core.reset_BANG_.call(null,interval,null);
+
+time_tracker.utilities.timerHelpers.set_timer_inactive.call(null);
 
 return cljs.core.swap_BANG_.call(null,app_state,cljs.core.conj,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"timerActive","timerActive",1262621616),false,new cljs.core.Keyword(null,"timerStart","timerStart",-206484013),false,new cljs.core.Keyword(null,"timerProject","timerProject",1380275266),false,new cljs.core.Keyword(null,"timerRunning","timerRunning",-77250006),false], null));
 });
@@ -88,4 +91,4 @@ return time_tracker.components.Timer.end_timer.call(null,app_state,interval);
 ;})(interval,currentTime))
 });
 
-//# sourceMappingURL=Timer.js.map?rel=1556144016980
+//# sourceMappingURL=Timer.js.map?rel=1570539748278

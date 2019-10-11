@@ -21,41 +21,41 @@ return null;
  *   pikaday-attrs: a map of options to be passed to the Pikaday constructor.
  *   input-attrs: a map of options to be used as <input> tag attributes.
  */
-cljs_pikaday.reagent.date_selector = (function cljs_pikaday$reagent$date_selector(p__22850){
-var map__22851 = p__22850;
-var map__22851__$1 = ((((!((map__22851 == null)))?(((((map__22851.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__22851.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__22851):map__22851);
-var date_atom = cljs.core.get.call(null,map__22851__$1,new cljs.core.Keyword(null,"date-atom","date-atom",-1343265988));
-var max_date_atom = cljs.core.get.call(null,map__22851__$1,new cljs.core.Keyword(null,"max-date-atom","max-date-atom",-1728627354));
-var min_date_atom = cljs.core.get.call(null,map__22851__$1,new cljs.core.Keyword(null,"min-date-atom","min-date-atom",-1006014148));
-var pikaday_attrs = cljs.core.get.call(null,map__22851__$1,new cljs.core.Keyword(null,"pikaday-attrs","pikaday-attrs",-835796550));
-var input_attrs = cljs.core.get.call(null,map__22851__$1,new cljs.core.Keyword(null,"input-attrs","input-attrs",-38113667));
+cljs_pikaday.reagent.date_selector = (function cljs_pikaday$reagent$date_selector(p__22858){
+var map__22859 = p__22858;
+var map__22859__$1 = ((((!((map__22859 == null)))?(((((map__22859.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__22859.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__22859):map__22859);
+var date_atom = cljs.core.get.call(null,map__22859__$1,new cljs.core.Keyword(null,"date-atom","date-atom",-1343265988));
+var max_date_atom = cljs.core.get.call(null,map__22859__$1,new cljs.core.Keyword(null,"max-date-atom","max-date-atom",-1728627354));
+var min_date_atom = cljs.core.get.call(null,map__22859__$1,new cljs.core.Keyword(null,"min-date-atom","min-date-atom",-1006014148));
+var pikaday_attrs = cljs.core.get.call(null,map__22859__$1,new cljs.core.Keyword(null,"pikaday-attrs","pikaday-attrs",-835796550));
+var input_attrs = cljs.core.get.call(null,map__22859__$1,new cljs.core.Keyword(null,"input-attrs","input-attrs",-38113667));
 var instance_atom = reagent.core.atom.call(null,null);
-return reagent.core.create_class.call(null,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),((function (instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
+return reagent.core.create_class.call(null,new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"component-did-mount","component-did-mount",-1126910518),((function (instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
 return (function (this$){
-var default_opts = new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"field","field",-1302436500),ReactDOM.findDOMNode(this$),new cljs.core.Keyword(null,"default-date","default-date",-626221529),cljs.core.deref.call(null,date_atom),new cljs.core.Keyword(null,"set-default-date","set-default-date",-2109074414),true,new cljs.core.Keyword(null,"on-select","on-select",-192407950),((function (instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
-return (function (p1__22849_SHARP_){
+var default_opts = new cljs.core.PersistentArrayMap(null, 4, [new cljs.core.Keyword(null,"field","field",-1302436500),ReactDOM.findDOMNode(this$),new cljs.core.Keyword(null,"default-date","default-date",-626221529),cljs.core.deref.call(null,date_atom),new cljs.core.Keyword(null,"set-default-date","set-default-date",-2109074414),true,new cljs.core.Keyword(null,"on-select","on-select",-192407950),((function (instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
+return (function (p1__22857_SHARP_){
 if(cljs.core.truth_(date_atom)){
-return cljs.core.reset_BANG_.call(null,date_atom,p1__22849_SHARP_);
+return cljs.core.reset_BANG_.call(null,date_atom,p1__22857_SHARP_);
 } else {
 return null;
 }
-});})(instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
+});})(instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
 ], null);
 var opts = cljs_pikaday.reagent.opts_transform.call(null,cljs.core.merge.call(null,default_opts,pikaday_attrs));
 var instance = (new Pikaday(opts));
 cljs.core.reset_BANG_.call(null,instance_atom,instance);
 
 if(cljs.core.truth_(date_atom)){
-cljs.core.add_watch.call(null,date_atom,new cljs.core.Keyword(null,"update-instance","update-instance",-1921201453),((function (default_opts,opts,instance,instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
+cljs.core.add_watch.call(null,date_atom,new cljs.core.Keyword(null,"update-instance","update-instance",-1921201453),((function (default_opts,opts,instance,instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
 return (function (key,ref,old,new$){
 return instance.setDate(new$,true);
-});})(default_opts,opts,instance,instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
+});})(default_opts,opts,instance,instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
 );
 } else {
 }
 
 if(cljs.core.truth_(min_date_atom)){
-cljs.core.add_watch.call(null,min_date_atom,new cljs.core.Keyword(null,"update-min-date","update-min-date",-470302899),((function (default_opts,opts,instance,instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
+cljs.core.add_watch.call(null,min_date_atom,new cljs.core.Keyword(null,"update-min-date","update-min-date",-470302899),((function (default_opts,opts,instance,instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
 return (function (key,ref,old,new$){
 instance.setMinDate(new$);
 
@@ -64,13 +64,13 @@ return cljs.core.reset_BANG_.call(null,date_atom,new$);
 } else {
 return null;
 }
-});})(default_opts,opts,instance,instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
+});})(default_opts,opts,instance,instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
 );
 } else {
 }
 
 if(cljs.core.truth_(max_date_atom)){
-return cljs.core.add_watch.call(null,max_date_atom,new cljs.core.Keyword(null,"update-max-date","update-max-date",-1884329652),((function (default_opts,opts,instance,instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
+return cljs.core.add_watch.call(null,max_date_atom,new cljs.core.Keyword(null,"update-max-date","update-max-date",-1884329652),((function (default_opts,opts,instance,instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
 return (function (key,ref,old,new$){
 instance.setMaxDate(new$);
 
@@ -79,13 +79,13 @@ return cljs.core.reset_BANG_.call(null,date_atom,new$);
 } else {
 return null;
 }
-});})(default_opts,opts,instance,instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
+});})(default_opts,opts,instance,instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
 );
 } else {
 return null;
 }
-});})(instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
-,new cljs.core.Keyword(null,"component-will-unmount","component-will-unmount",-2058314698),((function (instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
+});})(instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
+,new cljs.core.Keyword(null,"component-will-unmount","component-will-unmount",-2058314698),((function (instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
 return (function (this$){
 cljs.core.deref.call(null,instance_atom).destroy();
 
@@ -96,12 +96,12 @@ cljs.core.remove_watch.call(null,instance_atom,new cljs.core.Keyword(null,"updat
 cljs.core.remove_watch.call(null,instance_atom,new cljs.core.Keyword(null,"update-max-date","update-max-date",-1884329652));
 
 return cljs.core.reset_BANG_.call(null,instance_atom,null);
-});})(instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
-,new cljs.core.Keyword(null,"display-name","display-name",694513143),"pikaday-component",new cljs.core.Keyword(null,"reagent-render","reagent-render",-985383853),((function (instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
+});})(instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
+,new cljs.core.Keyword(null,"display-name","display-name",694513143),"pikaday-component",new cljs.core.Keyword(null,"reagent-render","reagent-render",-985383853),((function (instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs){
 return (function (props){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.Keyword(null,"input-attrs","input-attrs",-38113667).cljs$core$IFn$_invoke$arity$1(props)], null);
-});})(instance_atom,map__22851,map__22851__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
+});})(instance_atom,map__22859,map__22859__$1,date_atom,max_date_atom,min_date_atom,pikaday_attrs,input_attrs))
 ], null));
 });
 
-//# sourceMappingURL=reagent.js.map?rel=1556144016627
+//# sourceMappingURL=reagent.js.map?rel=1570412435077

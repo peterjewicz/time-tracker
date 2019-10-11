@@ -12,4 +12,4 @@ return time_tracker.utilities.view_handler.change_view.call(null,new cljs.core.P
 })], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"i.fas.fa-chart-bar","i.fas.fa-chart-bar",-710472302)], null)], null)], null)], null);
 });
 
-//# sourceMappingURL=Header.js.map?rel=1556144015649
+//# sourceMappingURL=Header.js.map?rel=1570412433829

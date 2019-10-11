@@ -13,4 +13,4 @@ time_tracker.utilities.view_handler.change_view = (function time_tracker$utiliti
 return cljs.core.swap_BANG_.call(null,time_tracker.utilities.view_handler.active_view,cljs.core.conj,view);
 });
 
-//# sourceMappingURL=view_handler.js.map?rel=1556144015632
+//# sourceMappingURL=view_handler.js.map?rel=1570412433802
