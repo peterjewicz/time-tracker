@@ -5,11 +5,36 @@
             ["localforage" :as localforage]
             ["moment" :as moment]))
 
+; I don't think we save an ID on the time enteries, so our best best is to look
+; for an entry that satisfies both the start and end time - not sure
+; Should only ever remove one - need to think about how to do this
+; since you can only ever run a single timer this should never be a problem
+; until we add manual times
+(defn remove-time-entry [project start end]
+  (.then (.getItem localforage project) (fn [value]
+    (let [currentStorate (js->clj value :keywordize-keys true)]
+      (.then (.setItem localforage project
+        (clj->js (filter (fn [timeEntry] ; TODO filter will remove all - need to stop on one so mayde a doseq?
+          (if (and (= start (first timeEntry)) (= end (second timeEntry)))
+            false ; if the both match we return false - and remove it from our collection
+            true))))) (fn [finalResult]
+              ;TODO we handle updating the DOM after a removal
+          ))))))
 
 (defn generate-time-values-for-project [timestamps]
-  (let [totalSeconds (date_formatter/get-total-seconds timestamps)]
-    [:p.Project-view-dateTimeItem (date_formatter/format-time-taken 0 (* 1000 totalSeconds))])) ; multiply by a thousand as I think it expects miliseconds
-
+  [:div
+    (let [totalSeconds (date_formatter/get-total-seconds timestamps)]
+      [:p.Project-view-dateTimeItem (str "Total: "(date_formatter/format-time-taken 0 (* 1000 totalSeconds)))]) ; multiply by a thousand as I think it expects miliseconds
+      [:div.Project-view-entry-details-dateWrapper
+        (loop [index 0
+               timeDisplay ()]
+        (if (>= index (count timestamps))
+          (reverse timeDisplay)
+          (recur (+ index 2)  (conj timeDisplay
+            [:div.Project-view-entry-details
+              [:p.Project-view-entry (date_formatter/format-time-taken (* 1000 (nth timestamps index)) (* 1000 (nth timestamps (+ index 1))))]
+              [:p.Project-view-time-range (str "From: " (nth timestamps index) " To: " (nth timestamps (+ index 1)))]
+              [:p.Project-view-remove-entry {:on-click #(js/console.log "Remove")} "X"]]))))]])
 
 (defn render [app-state]
     (fn []
