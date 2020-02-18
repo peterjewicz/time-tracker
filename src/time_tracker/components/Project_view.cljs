@@ -7,10 +7,10 @@
             ["moment" :as moment]))
 
 
-(defn remove-time-entry [project day start]
-  (db/remove-date-time project day start))
+(defn remove-time-entry [project day start app-state]
+  (db/remove-date-time project day start app-state))
 
-(defn generate-time-values-for-project [timestamps projectName currentDate]
+(defn generate-time-values-for-project [timestamps projectName currentDate app-state]
   [:div
     (let [totalSeconds (date_formatter/get-total-seconds timestamps)]
       [:p.Project-view-dateTimeItem (str "Total: "(date_formatter/format-time-taken 0 (* 1000 totalSeconds)))]) ; multiply by a thousand as I think it expects miliseconds
@@ -23,7 +23,7 @@
             [:div.Project-view-entry-details {:key (nth timestamps index)}
               [:p.Project-view-entry (date_formatter/format-time-taken (* 1000 (nth timestamps index)) (* 1000 (nth timestamps (+ index 1))))]
               [:p.Project-view-time-range (str "From: " (.format (moment (* 1000 (nth timestamps index))) "LTS") " To: " (.format (moment (* 1000(nth timestamps (+ index 1)))) "LTS") )]
-              [:p.Project-view-remove-entry {:on-click #(remove-time-entry projectName currentDate (nth timestamps index))} "X"]]))))]])
+              [:p.Project-view-remove-entry {:on-click #(remove-time-entry projectName currentDate (nth timestamps index) app-state)} "X"]]))))]])
 
 (defn render [app-state]
     (fn []
@@ -39,4 +39,4 @@
             (for [date projectDates]
               [:div.Project-view-dateWrapper {:key (first date)}
                 [:p (str (.format (moment (first date) "MMDDYYYY") "LL") " : ")]
-                (generate-time-values-for-project (second date) currentProjectName (first date))]))]])))
+                (generate-time-values-for-project (second date) currentProjectName (first date) app-state)]))]])))
