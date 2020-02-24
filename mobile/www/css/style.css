@@ -395,3 +395,13 @@ button {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+
+.Project-view-entry-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Project-view-remove-entry {
+  padding-right: 10px;
+}

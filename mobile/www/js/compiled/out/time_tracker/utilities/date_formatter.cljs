@@ -16,6 +16,9 @@
       total
         (recur (+ 2 i) (+ (- (nth timeArr (+ 1 i)) (nth timeArr i)) total)))))
 
+(defn format-human-readable-time [timestamp]
+  "Takes a timetamp and returns hour:minute:seconds human readable format")
+
 (defn format-time-taken [start end]
   "Returns a date in the following format `25 Minutes and 32 Seconds`"
   (let [time (atom {:hours 0 :minutes 0 :total (/ (- end start) 1000)})]

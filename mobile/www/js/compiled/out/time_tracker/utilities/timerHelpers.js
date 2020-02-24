@@ -20,4 +20,4 @@ return callback.call(null,value);
 }));
 });
 
-//# sourceMappingURL=timerHelpers.js.map?rel=1570539687039
+//# sourceMappingURL=timerHelpers.js.map?rel=1582304839316

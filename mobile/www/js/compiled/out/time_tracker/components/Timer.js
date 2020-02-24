@@ -91,4 +91,4 @@ return time_tracker.components.Timer.end_timer.call(null,app_state,interval);
 ;})(interval,currentTime))
 });
 
-//# sourceMappingURL=Timer.js.map?rel=1570539748278
+//# sourceMappingURL=Timer.js.map?rel=1582304840786

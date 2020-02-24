@@ -27,6 +27,9 @@ continue;
 break;
 }
 });
+time_tracker.utilities.date_formatter.format_human_readable_time = (function time_tracker$utilities$date_formatter$format_human_readable_time(timestamp){
+return "Takes a timetamp and returns hour:minute:seconds human readable format";
+});
 time_tracker.utilities.date_formatter.format_time_taken = (function time_tracker$utilities$date_formatter$format_time_taken(start,end){
 
 var time = reagent.core.atom.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"hours","hours",58380855),(0),new cljs.core.Keyword(null,"minutes","minutes",1319166394),(0),new cljs.core.Keyword(null,"total","total",1916810418),((end - start) / (1000))], null));
@@ -47,4 +50,4 @@ cljs.core.swap_BANG_.call(null,time,cljs.core.conj,new cljs.core.PersistentArray
 return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(time_tracker.utilities.date_formatter.generate_time_string.call(null,new cljs.core.Keyword(null,"hours","hours",58380855).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,time))," Hour(s) ")),cljs.core.str.cljs$core$IFn$_invoke$arity$1(time_tracker.utilities.date_formatter.generate_time_string.call(null,new cljs.core.Keyword(null,"minutes","minutes",1319166394).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,time))," Minute(s) ")),cljs.core.str.cljs$core$IFn$_invoke$arity$1(time_tracker.utilities.date_formatter.generate_time_string.call(null,new cljs.core.Keyword(null,"total","total",1916810418).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,time))," Second(s)"))].join('');
 });
 
-//# sourceMappingURL=date_formatter.js.map?rel=1570412433792
+//# sourceMappingURL=date_formatter.js.map?rel=1582304839076

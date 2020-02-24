@@ -2,6 +2,7 @@
   (:require [reagent.core :as reagent :refer [atom]]
             [time_tracker.utilities.view_handler :as view_handler]
             [time_tracker.utilities.state :refer [update-project-state]]
+            [time-tracker.components.toast :as fancy-alert]
             ["localforage" :as localforage]))
 
 (defn project-exists? [project currentStorage]
@@ -9,6 +10,16 @@
   (if (some #{(.trim project)} currentStorage)
     true
     false))
+
+(defn call-success-toast []
+  (fancy-alert/fancy-alert
+    {:text "Project Added" :hideAfterN true
+     :styles {:background "#4aa651;" :border "1px solid #4aa651;" :z-index "999;" :color "white;"}}))
+
+(defn call-fail-toast [message]
+  (fancy-alert/fancy-alert
+    {:text message :hideAfterN true
+     :styles {:background "#cc4a56;" :border "1px solid #cc4a56;" :z-index "999;" :color "white;"}}))
 
 (defn add-project [name app-state]
   (.then (.getItem localforage "projects") (fn [value]  ; then for getItem promise here
@@ -18,11 +29,11 @@
           (do
             (.then (.setItem localforage "projects" (clj->js (conj currentStorage (.trim @name))))(fn [value]
               (update-project-state app-state)))
-            (js/alert "Project Added!") ; TODO we need to create a better looking alert notifiction here
+            (call-success-toast) ; TODO we need to create a better looking alert notifiction here
             (reset! name "")
             (view_handler/change-view {:add-new false}))
-          (js/alert "Project Name Cannot Be Empty"))
-        (js/alert "Project Already Exists"))))))
+          (call-fail-toast "Project Name Cannot Be Empty"))
+        (call-fail-toast "Project Already Exists"))))))
 
 (defn render [app-state]
   (let [project-name (atom "")]

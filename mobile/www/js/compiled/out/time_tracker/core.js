@@ -14,9 +14,9 @@ return null;
 }
 });
 time_tracker.core.get_project_dates = (function time_tracker$core$get_project_dates(project_map){
-return Promise.all(cljs.core.map.call(null,(function (p1__27897_SHARP_){
-return module$Applications$server$time_tracker$node_modules$localforage$dist$localforage["default"].getItem(p1__27897_SHARP_).then((function (v){
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [p1__27897_SHARP_,v], null);
+return Promise.all(cljs.core.map.call(null,(function (p1__22863_SHARP_){
+return module$Applications$server$time_tracker$node_modules$localforage$dist$localforage["default"].getItem(p1__22863_SHARP_).then((function (v){
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [p1__22863_SHARP_,v], null);
 }));
 }),project_map)).then(cljs.core.partial.call(null,cljs.core.into,cljs.core.PersistentArrayMap.EMPTY));
 });
@@ -37,4 +37,4 @@ time_tracker.core.on_js_reload = (function time_tracker$core$on_js_reload(){
 return null;
 });
 
-//# sourceMappingURL=core.js.map?rel=1570539864387
+//# sourceMappingURL=core.js.map?rel=1582304840453
